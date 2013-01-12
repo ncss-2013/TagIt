@@ -28,7 +28,7 @@ class IfNode(Node):
         self.false = false
         self.predicate = predicate
     def render(self, context):
-        return self.true.render(context) if eval(self.predicate, {}, context) else self.false.render(context)
+        return self.true.render(context) if eval(self.predicate, {}, context) else (self.false.render(context) if self.false else '')
 
 class IncludeNode(Node):
     def __init__(self, path, var_list):
@@ -74,14 +74,62 @@ class LetNode(Node):
         
 
 
-        
 
+def render(content, context):
+    
+    def parse(content, node_list = None):
+        content = list(content)
+        if not node_list: node_list = []
+        while content:
+            
+            if ''.join(content).startswith('{{'): # PythonNode
+                for _ in range(2): content.pop(0)
+                node = PythonNode(content.pop(0))
+                while not ''.join(content).startswith('}}'):
+                    node.code += content.pop(0)
+                for _ in range(2): content.pop(0)
+                node.code = node.code.strip()
+                node_list.append(node)
 
+            elif ''.join(content).startswith('{%'): # if or include
+                for _ in range(3): content.pop(0)
+                
+                if ''.join(content).startswith('if') : # IfNode
+                    for _ in range(3): content.pop(0)
+                    node = IfNode(content.pop(0), '')
+                    while not ''.join(content).startswith('%}'):
+                        node.predicate += content.pop(0)
+                    for _ in range(2): content.pop(0)
+                    node.predicate = node.predicate.strip()
+                    true_content = []
+                    stack = 0
+##                    while stack >= 0:
+##                        if ''.join(content).startswith('{% end if %}'): stack -= 1
+##                        if ''.join(content).startswith('{% if'): stack += 1
+                    while not ''.join(content).startswith('{% end if %}'):
+                        true_content.append(content.pop(0))
+                    for _ in range(len('{% end if %}')): content.pop(0)
+                    node.true = GroupNode(parse(true_content))
+                    node_list.append(node)
+                    
+            else: # TextNode
+                node = TextNode('')
+                while content and not (''.join(content).startswith('{%') or ''.join(content).startswith('{{')):
+                    node.content += content.pop(0)
+                node_list.append(node)
 
+        return node_list
 
-# {% extend "base.html" %}
-# {% block content %} My content {% end block %}
+    raw = parse(content)
+    output = ''
+    for part in raw:
+        output += part.render(context)
+    return output
 
-#{% include "basetop.html" %}
-# CONTENT
-#{% include "basebottom.html" %}
+if __name__ == '__main__':
+    f = ''.join(open('template_sample.html').readlines())
+    context = {'f_name': 'my friend',
+               'f_age': '15',
+               'f_gender': 'M',
+               'person_name':'asem wardak'}
+    print(render(f, context))

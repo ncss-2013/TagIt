@@ -1,8 +1,8 @@
 <section id='profile'>
-    <h1>{{ person_name }}</h1>
+    <h1>{{ person_name.title() }}</h1>
     <ul id='friends-list'>
         <li class='friend'>
-        {{ f_name.title() }} {{ f_age }} {% if f_gender == 'M' %}Male{% end if %}
+        {{ f_name.title() }} is {{ f_age }} years old and the gender is {% if f_gender == 'M' %}Male{% end if %}
         </li>
     </ul>
 </section>
