@@ -166,14 +166,21 @@ a {
 
 #photos {
     clear: both;
+    list-style-type:none;
+    width: 700px;
+}
+#photos li figure {
+    clear: both;
 }
 
 #photos li img {
+    float: left;
+    margin-right: 20px;
     width: 400px;
 }
 
-#photos li p {
-    width: 300px;
+#photos li figcaption {
+    /*width: 300px;*/
 }
 
 /**** end photo stream styles ****/
