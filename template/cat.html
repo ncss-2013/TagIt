@@ -1,3 +1,8 @@
-<section id='cats'>
-    <h1>I LIKE CATS</h1>
+<section id='profile'>
+    <h1>{{ person_name.title() }}</h1>
+    <ul id='friends-list'>
+        <li class='friend'>
+        {{ f_name.title() }} is {{ int(f_age)+2 }} years old and is{% if f_gender == 'M' %} Male{% end if %}
+        </li>
+    </ul>
 </section>

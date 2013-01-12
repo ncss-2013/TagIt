@@ -36,7 +36,7 @@ class IncludeNode(Node):
         # self.var_dict = var_dict if var_dict else {}
     def render(self, context):
         # context.update(var_dict)
-        return ''.join(open(self.path).readlines())
+        return create(''.join(open(self.path).readlines()), context)
 
 class ForNode(Node):
     def __init__(self, items, iterable, true, false = ''):
@@ -70,7 +70,7 @@ class LetNode(Node):
     def render(self, context):
         context[self.var] = eval(self.expr)
 
-def render(content, context):
+def create(content, context):
     
     def parse(content, node_list = None):
         content = list(content)
@@ -136,6 +136,6 @@ if __name__ == '__main__':
                'f_gender': 'M',
                'person_name':'asem wardak'}
     output_file = open('output.html', 'w')
-    output_file.write(render(f, context))
+    output_file.write(create(f, context))
     output_file.close()
-    print(render(f, context))
+    print(create(f, context))
