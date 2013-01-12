@@ -138,7 +138,7 @@ def create(content, context):
     return output
 
 if __name__ == '__main__':
-    f = ''.join(open('template_sample.html').readlines())
+    f = ''.join(open('/template_sample.html').readlines())
     context = {'f_name': 'john smith',
                'f_age': '100',
                'f_gender': 'F',

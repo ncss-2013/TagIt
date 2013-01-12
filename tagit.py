@@ -4,12 +4,15 @@ import os
 
 import sqlite3
 
+from template_language import *
+
 import cgitb
+context = {} # dictionary for the variables, should be taken from database and inserted into this dictionary
 cgitb.enable()
 
-f = open('index.html', 'r')
-index_html = f.read()
-f.close()
+#f = open('index.html', 'r')
+#index_html = f.read()
+#f.close()
 #make variables so that later when we create a better sign up form, we'll change it to use the variables from the database
 firstname,lastname, email, country, sex, age = "", "", "", "", "", 0
 
@@ -107,23 +110,8 @@ def home(response):
     else:
         #Cookie does not exist, display the login page
         #Send the form to the '/login' page to process
-        response.write('''
-        <!doctype html>
-        <html>
-            <title>Tag it</title>
-            <head></head>
-            <body>
-                <form action="/login" id="login" method='POST'>
-                    <input type="text" name="username"> Username </input>
-                    <input type="password" name="password"> Password </input>
-                    <input type="submit" name="submit" value="Submit" </input>
-                </form>
-                Current username and password are 'chicken' and 'egg' . Working on database interaction
-                <p>
-                   current pages avaliable are <a href = "/piclist"> piclist <a> and <a href = "/stream" >the photostream</a>
-                </p>
-            </body>
-        <html>''')
+        output = create(''.join(open('template/index.html').readlines()), {})
+        response.write(output)
 
 
 def upload(response):
@@ -246,7 +234,7 @@ def loggedout(response): #Loggedout page, delete cookies here
 
      
 server = Server()
-server.register("/home", home)
+server.register("/", home)
 server.register("/upload", upload)
 server.register("/view/(.+)", view)
 server.register("/piclist", piclist)
