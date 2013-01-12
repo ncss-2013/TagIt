@@ -12,6 +12,8 @@ Tables in the Database nedded for the website 'TagIt' by Group 3:
         **Users = Profile Picture**
         CONSTRAINTS on Username and Email
         
+        users.get_user("smerity")
+        
     Table = Photos
         Photos = URL
         Photos = Location 
@@ -20,10 +22,13 @@ Tables in the Database nedded for the website 'TagIt' by Group 3:
         Photos = Date 
         Photos = Caption
         Photos = Tagging of Artist
-        Photos = Tagging of Friends
+        Photos = Tagging of Friends0.
         Photos = ID Field
         CONSTRAINTS on ID
         FOREIGN KEY Uploader REFERENCES users.username
+        
+        photos.get_...
+        photos.get_all_photos_by_user // except with a better name!
         
     Table = Comments
         Comments = ID - Sequential Number

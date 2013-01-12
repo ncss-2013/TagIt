@@ -95,6 +95,8 @@ class Image():
         self.url = curs.fetch()
         return self.url
 
+    def getphoto
+
 ##testuser = User("Jess_User")
 ##print(testuser.getfirstname() + " " + testuser.getlastname())
 ##print(testuser.getpassword())
