@@ -104,23 +104,12 @@ a {
     color:white;
     padding:10px;
 }
-.form-fields{
-    margin-left:-50px;
- } 
- 
-.input-box{
-    text-align: middle; 
-    margin-left:30px;
-    font-size:12pt;
-    padding-right:0px;
-    padding-bottom: 10px;
-    margin-top:15px;
+
+.register{
+    padding: 20px;  
 }
-.input-box-side{
+.input-box{
     font-size:12pt;
-    
-    padding-bottom: 10px;
-    margin-top:15px;
 }
 .drop-down-box{
     font-size:12pt;
@@ -152,20 +141,6 @@ a {
 }
 
 .full-input-box{
-    margin-left:30px;
-    font-size:12pt;
-    width:362px;
-    padding-bottom: 10px;
-    margin-top:10px;
+    width:100%;
 }
 
-.register-title{
-    margin-left:5px;
-    margin-top:5px;
- }
- 
-.birthday-text{
-    margin-top:10px;
-    margin-bottom:-6px;
-    margin-left:30px;
-}
