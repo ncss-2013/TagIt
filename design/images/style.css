@@ -1,48 +1,74 @@
 
+/* Defining text styles*/
+
 @font-face {
     font-family: Muli;
     src: url('Muli-Regular.ttf');
 }
 
-h1{
+h1, h2, h3, h4, h5, h6, p, ol, ul{
     font-family:Muli;
+    padding-bottom:10px;
+}
+h1{
     font-size:24px;
-    color:white;
 }
 h2{
-    font-family:Muli;
     font-size:22px;
 }
 h3{
-    font-family:Muli;
     font-size:18px;
 }
 h4{
-    font-family:Muli;
-    font-size:16px
+    font-size:16px;
 }
-#wrapper{
+h5{
+    font-size:14px;
+}
+h6{
+    font-size:12px;
+}
+ul{
+    list-style-type:disc;
+    padding-left: 40px;
+}
+ol{
+    list-style-type:decimal;
+    padding-left: 40px;
+}
+    
+
+.wrapper{
     margin-left: 120px;
     margin-right:120px;
 }
 
-.header{
-    background-image:url('header.png');
+header{
+    background-color:#455865;
     width: 100%;
     height: 120px;
     position:relative;
     border: 0px;
 }
-.footer{
-    background-image:url('header.png');
-    width: 100%;
-    height: 12%;
+footer {
     position:absolute;
+    width:100%;
     bottom:0;
+    text-align: right;
+    background-color: #455865;
+    background-image: url("spray can_white.png");
+    background-position: 99% 32px ;
+    background-repeat:no-repeat;
+    color: #FFFFFF;
+    padding: 50px 35px 10px 10px;
+    font-family:"Muli";
 }
-
+a { 
+    color: #FFFFFF;
+}
 .logo{
     margin-top:20px;
+    margin-left:100px;
     position:absolute;
     top:0;
     height:80px;
@@ -53,19 +79,29 @@ h4{
     width:400px;
     box-shadow: 3px 3px 5px 6px #ccc;
 }
-.register{
-    width:430px;
-    height:300px;
+
+.pull-right {
     float:right;
+}
+
+.pull-left{
+    float:left;
+}
+
+.third-span{
+    width:500px;
+   
+}
+
+.container{
     box-shadow: 1px 5px 5px 1px #ccc;
 }
-.top-bar-register{
-    background-image: url('purple.png');
-    margin-top:30px;
-    width:430px;
-    height:40px;
-    float:right;
-    box-shadow: 1px 0px 5px 1px #ccc;
+.container h1, 
+.container h2,
+.container h3{
+    background-color: #4f4859;
+    color:white;
+    padding:10px;
 }
 .form-fields{
     margin-left:-50px;
@@ -101,31 +137,19 @@ h4{
     height:50px;
 }
 
-.button{
+.btn{
   margin-left:20px;
-  padding-right:50px;
+  padding:5px 20px;
   text-align:center;
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #006dcc;
-  *background-color: #0044cc;
-  background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+  background-color: #8c99b4;
   background-image: -webkit-linear-gradient(top, #6f85b3, #8c99b4);
-  background-image: -o-linear-gradient(top, #0088cc, #0044cc);
-  background-image: linear-gradient(to bottom, #0088cc, #0044cc);
-  background-repeat: repeat-x;
-  border-color: #0044cc #0044cc #002a80;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-  -webkit-border-radius: 7px;
+  border-radius: 7px;
   border: 0;
  }
-  
-.btn-primary:active,
-.btn-primary.active,
-.btn-primary.disabled,
-.btn-primary[disabled] {
+.btn:hover{
+   background-image: -webkit-linear-gradient(top, #5f75a3, #7c89a4);
 }
 
 .full-input-box{
@@ -145,6 +169,4 @@ h4{
     margin-top:10px;
     margin-bottom:-6px;
     margin-left:30px;
-
-
-    
+}
