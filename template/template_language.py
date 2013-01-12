@@ -86,7 +86,7 @@ def create(content, context):
                 node.code = node.code.strip()
                 node_list.append(node)
 
-            elif ''.join(content).startswith('{%'): # if or include
+            elif ''.join(content).startswith('{%'):
                 for _ in range(3): content.pop(0)
                 
                 if ''.join(content).startswith('if') : # IfNode
@@ -97,13 +97,21 @@ def create(content, context):
                     for _ in range(2): content.pop(0)
                     node.predicate = node.predicate.strip()
                     true_content = []
+                    false_content = []
                     stack = 0
                     while stack >= 0:
                         true_content.append(content.pop(0))
                         if ''.join(content).startswith('{% end if %}'): stack -= 1
                         if ''.join(content).startswith('{% if'): stack += 1
+                        if ''.join(content).startswith('{% else %}') and stack == 0:
+                            for _ in range(10): content.pop(0)
+                            while stack >= 0:
+                                false_content.append(content.pop(0))
+                                if ''.join(content).startswith('{% end if %}'): stack -= 1
+                                if ''.join(content).startswith('{% if'): stack += 1
                     for _ in range(len('{% end if %}')): content.pop(0)
                     node.true = GroupNode(parse(true_content))
+                    if false_content: node.false = GroupNode(parse(false_content))
                     node_list.append(node)
 
                 elif ''.join(content).startswith('include'): # IncludeNode
@@ -133,7 +141,7 @@ if __name__ == '__main__':
     f = ''.join(open('template_sample.html').readlines())
     context = {'f_name': 'john smith',
                'f_age': '100',
-               'f_gender': 'M',
+               'f_gender': 'F',
                'person_name':'asem wardak'}
     output_file = open('output.html', 'w')
     output_file.write(create(f, context))

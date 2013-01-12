@@ -3,7 +3,7 @@
     <h1>{{ person_name.title() }}</h1>
     <ul id='friends-list'>
         <li class='friend'>
-        {{ f_name.title() }} is {{ 150 }} years old and is{% if f_gender == 'M' %} Male{% end if %}
+        {{ f_name.title() }} is {{ 150 }} years old and is{% if f_gender == 'M' %} Male{% else %} Female{% end if %}
         </li>
     </ul>
 </section>
