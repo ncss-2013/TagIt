@@ -135,4 +135,7 @@ if __name__ == '__main__':
                'f_age': '100',
                'f_gender': 'M',
                'person_name':'asem wardak'}
+    output_file = open('output.html', 'w')
+    output_file.write(render(f, context))
+    output_file.close()
     print(render(f, context))
