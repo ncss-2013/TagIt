@@ -1,0 +1,53 @@
+Tables in the Database nedded for the website 'TagIt' by Group 3:
+ Database = Database
+    Table = Users
+        Users = Username
+        Users = Password
+        Users = FirstName
+        Users = LastName
+        Users = Email
+        Users = Country
+        Users = Sex
+        Users = Age
+        Users = Profile Picture
+        CONSTRAINTS on Username and Email
+        
+    Table = Photos
+        Photos = URL
+        Photos = Location 
+        Photos = Description
+        Photos = Uploader
+        Photos = Date 
+        Photos = Caption
+        Photos = Tagging of Artist
+        Photos = Tagging of Friends
+        Photos = Photo ID
+        CONSTRAINTS on ID
+        FOREIGN KEY (Uploader) REFERENCES users(username)
+        
+    Table = Comments
+        Comments = ID - Sequential Number, Primary Key
+        Comments = Dates
+        Comments = Comment String
+        Comments = Commenter
+        Comments = Photo ID 
+        CONSTRANTS on ID
+        FOREIGN KEY (Photo ID) REFERENCES photos(ID Field)
+        FOREIGN KEY (Commenter) REFERENCES (users.username)
+        
+        
+    Table = Friends
+        Friends = friend_username
+        Friends = recent_activity?? 
+        CONSTRANTS on friend_username
+        
+    Table = Events??
+    
+    Table = Groups??
+    
+    Table = 
+
+- Users  (use (#) to tag friends that were there or you want to share with)   DONE
+- pictures (urls)
+- artists (use (@) to symbolise artists)
+- tags (possible removal

@@ -1,0 +1,20 @@
+- registering a new user
+    - username validity
+    - email vadidity
+    - adding new user information to database
+- loging in
+    - ensuring username and password match
+- search function
+    - searching for photos by:
+        - artist
+        - location
+        - tags
+- friends
+    - view list friends
+    - 
+        
+        
+        
+
+        
+        
