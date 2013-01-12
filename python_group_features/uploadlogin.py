@@ -1,6 +1,7 @@
 from tornado import Server
 import os
 from http.cookies import SimpleCookie
+import time
 
 import cgitb
 cgitb.enable()
@@ -105,6 +106,8 @@ def upload(response):
         with open("static/uploads/tags"+ filename.replace('.', '')+".txt", "w") as t:
 
             t.write(tags)
+            current_time = ', ' + str(time.ctime())
+            t.write(current_time)
 
 #in the future we will need to ensure data is stored by ID, not filename
 #this will prevent conflicts
@@ -119,7 +122,9 @@ def view(response, name):
             <div>
                 <img src = "/static/uploads/images/"""+name+"""">
                 <p>
-                """"""
+"""
+
+"""
                 </p>
                 </div>
         </body>
