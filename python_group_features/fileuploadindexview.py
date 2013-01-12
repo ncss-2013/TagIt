@@ -19,8 +19,10 @@ def upload(response):
     <html>
         <head></head>
         <body>
-            <form id="login" method="post" enctype="multipart/form-data">
+            <a href = "/home"> Home <a>
+            <form id="upload" method="post" enctype="multipart/form-data">
                 <input type="file" name="upload_image"></br>
+                <input type="text" name="tags"> Tags (seperated by commas, cases are irrelevant) </input>
                 <input type="submit" name="Submit" value="Upload Image"></br>
             </form>
         </body>
@@ -32,6 +34,10 @@ def upload(response):
     # This allows us to use each individually
     
     filename, content_type, data = response.get_file('upload_image')
+
+    #retrieve the input tags
+    tags = response.get_field('tags')
+    
     
     #checks if there is a file in the request
     
@@ -47,6 +53,10 @@ def upload(response):
             
             f.write(data)
 
+        with open("static/uploads/"+ filename.replace('.', '')+".txt", "w") as t:
+
+            t.write(tags)
+
 #in the future we will need to ensure data is stored by ID, not filename
 #this will prevent conflicts
 
@@ -56,6 +66,7 @@ def view(response, name):
 <!doctype html>
     <html>
         <body>
+            <a href = "/home"> home <a>
             <div>
                 <img src = "/static/uploads/"""+name+"""">
                 </div>
@@ -69,6 +80,7 @@ def index(response):
     response.write("""<!doctype html>
     <html>
         <body>
+        <a href = "/home"> Home <a>
             <div>
                 <p>""")
     for file in os.listdir("static/uploads"):
