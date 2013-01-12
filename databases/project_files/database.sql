@@ -1,5 +1,8 @@
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS photos;
+DROP TABLE IF EXISTS artists;
+DROP TABLE IF EXISTS comments;
+DROP TABLE IF EXISTS tags;
 CREATE TABLE users(
     username TEXT PRIMARY KEY, 
     password TEXT,
@@ -15,26 +18,25 @@ CREATE TABLE users(
 );
 
 CREATE TABLE photos (
-    id INT PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     latitude FLOAT,
     longitude FLOAT,
     description TEXT,
     uploader TEXT,
-    uploaddate DATE(INT),
+    uploaddate DATE,
     caption TEXT,
     artist TEXT,
     friend TEXT,
     url TEXT,
-    CONSTRAINTS on id
     FOREIGN KEY (uploader) REFERENCES users(username)
  );
  
  CREATE TABLE comments (
-    id INT PRIMARY KEY AUTOINCREMENT,
-    uploaddate DATE(INT),
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    uploaddate DATE,
     comstring TEXT,
     commenter TEXT,
-    photoid INT,
+    photoid INTEGER,
     FOREIGN KEY (photoid) REFERENCES photos(id)
  );
  
@@ -46,9 +48,9 @@ CREATE TABLE photos (
  );
  
  CREATE TABLE tags (
-    tagid INT,
+    tagid INTEGER,
     tagstring TEXT,
-    tagtype BOOLEAN,
+    tagtype BOOLEAN
 ); 
  
  
@@ -71,9 +73,9 @@ CREATE TABLE photos (
         CONSTRAINTS on ID
         FOREIGN KEY (Uploader) REFERENCES users(username)
        */
-INSERT INTO users VALUES ("Caspar_User", "Caspar_password", "Caspar", "Blattmann", "casper@email.com", "Turkey", "M", 32);
-INSERT INTO users VALUES ("Jess_User", "Jess_password", "Jess", "D'Ali", "dali@email.com", "France", "F", 18);
-INSERT INTO users VALUES ("Alex_User", "Alex_password", "Alex", "Harper", "alex@email.com", "Germany", "M", 24);
+INSERT INTO users VALUES ("Caspar_User", "Caspar_password", "test.com", "Caspar", "Blattmann", "casper@email.com", "Turkey", "M", 32);
+INSERT INTO users VALUES ("Jess_User", "Jess_password", "test.com", "Jess", "D'Ali", "dali@email.com", "France", "F", 18);
+INSERT INTO users VALUES ("Alex_User", "Alex_password", "test.com", "Alex", "Harper", "alex@email.com", "Germany", "M", 24);
 
-INSERT INTO photos VALUES (1,-33.1,151.2,"blah","Caspar_User",date('now'),"blah_short","Tim","tim.com");
-INSERT INTO photos VALUES (2,33,130.5,"this is a cool photo", "Jess_USer",date('now'),"sdfakasdf","Smezza","smezza.com");
+INSERT INTO photos VALUES (1,-33.1,151.2,"blah","Caspar_User",date('now'),"blah_short","Tim","John", "tim.com");
+INSERT INTO photos VALUES (2,33,130.5,"this is a cool photo", "Jess_USer",date('now'),"sdfakasdf","Smezza","Smith", "smezza.com");
