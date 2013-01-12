@@ -66,7 +66,19 @@ def view(response, name):
 """)
 
 def index(response):
-    response.write(str(os.listdir("static/uploads")))
+    response.write("""<!doctype html>
+    <html>
+        <body>
+            <div>
+                <p>""")
+    for file in os.listdir("static/uploads"):
+        response.write("<a href = /view/" + file + ">" + file +"</a></br>")
+    response.write("""
+                </p>
+            </div>
+        </body>
+    <html>
+""")
 
      
 server = Server()
