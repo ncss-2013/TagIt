@@ -35,7 +35,7 @@ def home(response):
                     Logout
                     </button>
                     <p>
-                            current pages avaliable are <a href = "/upload" >/upload</a> and <a href = "/index"> /index <a>
+                            current pages avaliable are <a href = "/upload" >/upload</a>, <a href = "/stream" >the photostream</a> and <a href = "/index"> /index <a>
                     </p>
             </body>
         </html>''')
@@ -56,7 +56,7 @@ def home(response):
                 </form>
                 Current username and password are 'chicken' and 'egg' . Working on database interaction
                 <p>
-                   current pages avaliable are <a href = "/index"> /index <a>
+                   current pages avaliable are <a href = "/index"> /index <a> and <a href = "/stream" >the photostream</a>
                 </p>
             </body>
         <html>''')
@@ -128,6 +128,25 @@ def view(response, name):
         
 """)
 
+def photostream(response):
+    response.write("""
+<!doctype html>
+    <html>
+        <body>
+            <a href = "/home"> home <a>
+            <div>""")
+    for file in os.listdir("static/uploads/images"):
+        response.write("""<img src = "/static/uploads/images/"""+file+""""><br>""")
+    response.write("""<p>
+                
+            </p>
+            </div>
+        </body>
+    </html>"""
+    )
+        
+
+
 def index(response):
     response.write("""<!doctype html>
     <html>
@@ -160,6 +179,7 @@ def loggedout(response): #Loggedout page, delete cookies here
     response.clear_cookie('tag_it')
     response.redirect('/home')
 
+
      
 server = Server()
 server.register("/home", home)
@@ -168,4 +188,5 @@ server.register("/view/(.+)", view)
 server.register("/index", index)
 server.register('/login', login)
 server.register('/loggedout', loggedout)
+server.register('/stream', photostream)
 server.run()
