@@ -43,7 +43,6 @@ CREATE TABLE photos (
  CREATE TABLE artists (
     /*(if username is null, not registered, if username not null...) registered BOOLEAN,*/
     username TEXT,
-    
     FOREIGN KEY (username) REFERENCES users(username)
  );
  
@@ -79,3 +78,11 @@ INSERT INTO users VALUES ("Alex_User", "Alex_password", "test.com", "Alex", "Har
 
 INSERT INTO photos VALUES (1,-33.1,151.2,"blah","Caspar_User",date('now'),"blah_short","Tim","John", "tim.com");
 INSERT INTO photos VALUES (2,33,130.5,"this is a cool photo", "Jess_USer",date('now'),"sdfakasdf","Smezza","Smith", "smezza.com");
+
+
+
+/* how to load sql up
+login
+cd ncss133/databases/project_files/
+sqlite3 database.db
+.read database.sql */
