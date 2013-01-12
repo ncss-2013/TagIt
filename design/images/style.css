@@ -106,9 +106,18 @@ a {
 }
 
 .register{
-    padding: 20px;  
+    margin-left:20px;
+    margin-right:20px;
 }
 .input-box{
+    margin-bottom:5px;
+    font-size:12pt;
+    padding-bottom:10px;
+}
+
+.full-input-box{
+    width:100%;'
+    margin-bottom:10px;
     font-size:12pt;
 }
 .drop-down-box{
@@ -140,9 +149,6 @@ a {
    background-image: -webkit-linear-gradient(top, #5f75a3, #7c89a4);
 }
 
-.full-input-box{
-    width:100%;
-}
 
 /**** photo stream styles ****/
 
