@@ -1,27 +1,30 @@
-.h1{
-    font-family:muli;
-    font-size:24px;
+
+@font-face {
+    font-family: Muli;
+    src: url('Muli-Regular.ttf');
 }
-.h2{
-    font-family:muli;
+
+h1{
+    font-family:Muli;
+    font-size:24px;
+    color:white;
+}
+h2{
+    font-family:Muli;
     font-size:22px;
 }
-.h3{
-    font-family:muli;
+h3{
+    font-family:Muli;
     font-size:18px;
 }
-.h4{
-    font-family:muli;
+h4{
+    font-family:Muli;
     font-size:16px
 }
 #wrapper{
     margin-left: 120px;
     margin-right:120px;
 }
-#login{
-
-}
-
 
 .header{
     background-image:url('header.png');
@@ -39,10 +42,10 @@
 }
 
 .logo{
-    margin-top:30px;
+    margin-top:20px;
     position:absolute;
     top:0;
-    height:60px;
+    height:80px;
 }
 
 .photooftheday{
@@ -56,15 +59,92 @@
     float:right;
     box-shadow: 1px 5px 5px 1px #ccc;
 }
-
-.topbarregister{
+.top-bar-register{
+    background-image: url('purple.png');
     margin-top:30px;
     width:430px;
     height:40px;
     float:right;
     box-shadow: 1px 0px 5px 1px #ccc;
 }
+.form-fields{
+    margin-left:-50px;
+ } 
+ 
+.input-box{
+    text-align: middle; 
+    margin-left:30px;
+    font-size:12pt;
+    padding-right:0px;
+    padding-bottom: 10px;
+    margin-top:15px;
+}
+.input-box-side{
+    font-size:12pt;
+    
+    padding-bottom: 10px;
+    margin-top:15px;
+}
+.drop-down-box{
+    font-size:12pt;
+    margin-left:30px;
+    padding-right:0px;
+}
+.drop-down-box-side{
+    font-size:12pt;
+    padding-right:0px;
+}
 
+.footer-logo{
+    background-image: url('spray-can.png');
+    bottom:0;
+    height:50px;
+}
+
+.button{
+  margin-left:20px;
+  padding-right:50px;
+  text-align:center;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #006dcc;
+  *background-color: #0044cc;
+  background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+  background-image: -webkit-linear-gradient(top, #6f85b3, #8c99b4);
+  background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+  background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+  background-repeat: repeat-x;
+  border-color: #0044cc #0044cc #002a80;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  -webkit-border-radius: 7px;
+  border: 0;
+ }
+  
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+}
+
+.full-input-box{
+    margin-left:30px;
+    font-size:12pt;
+    width:362px;
+    padding-bottom: 10px;
+    margin-top:10px;
+}
+
+.register-title{
+    margin-left:5px;
+    margin-top:5px;
+ }
+ 
+.birthday-text{
+    margin-top:10px;
+    margin-bottom:-6px;
+    margin-left:30px;
 
 
     
