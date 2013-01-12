@@ -34,14 +34,14 @@ def createlogin(response):
             cursor.close()
             conn.close()
             response.set_secure_cookie('tag_it', username)  #make the user log in after sign up
-            response.write("Well done, you created a user: " + username) #
+            response.redirect('/upload')
         elif(password_check is None and password is None):
             response.write("Please enter a username/password")
         else:
             response.write("Passwords did not match, please try again")
 
 
-def login2(response):
+def login(response):
     conn = sqlite3.connect("database.db")
     cursor = conn.cursor()
     if response.get_secure_cookie('tag_it'):
@@ -125,6 +125,7 @@ def upload(response):
                 <input type="file" name="upload_image"></br>
                 <input type="text" name="tags"> Tags (seperated by spaces, cases are irrelevant) </input>
                 <input type="submit" name="Submit" value="Upload Image"></br>
+                <a href = "/piclist"> piclist <a>
             </form>
         </body>
     <html>
@@ -215,16 +216,16 @@ def piclist(response):
     <html>
 """)
 
-def login(response): #Login page
-    username = response.get_field('username')
-    password = response.get_field('password')
-    #Here we need to connect and check with the database
-    #Need to ensure against SQL injection attacks(?)
-    if username == 'chicken' and password == 'egg':
-        response.set_secure_cookie('tag_it', username)
-        response.redirect('/home')
-    else:
-        response.redirect('/home')
+##def login(response): #Login page
+##    username = response.get_field('username')
+##    password = response.get_field('password')
+##    #Here we need to connect and check with the database
+##    #Need to ensure against SQL injection attacks(?)
+##    if username == 'chicken' and password == 'egg':
+##        response.set_secure_cookie('tag_it', username)
+##        response.redirect('/home')
+##    else:
+##        response.redirect('/home')
     
 
 def loggedout(response): #Loggedout page, delete cookies here
@@ -238,7 +239,7 @@ server.register("/", home)
 server.register("/upload", upload)
 server.register("/view/(.+)", view)
 server.register("/piclist", piclist)
-server.register('/login2', login2)
+#server.register('/login2', login2)
 server.register('/createlogin', createlogin)
 server.register('/login', login)
 server.register('/loggedout', loggedout)
