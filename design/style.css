@@ -113,15 +113,13 @@ h4{
   border-color: #0044cc #0044cc #002a80;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-  }
-.btn-primary:hover,
+  -webkit-border-radius: 7px;
+ }
+  
 .btn-primary:active,
 .btn-primary.active,
 .btn-primary.disabled,
 .btn-primary[disabled] {
-  color: #ffffff;
-  background-color: #8c99b4;
-  *background-color: #003bb3;
 }
 
 .full-input-box{
