@@ -144,3 +144,18 @@ a {
     width:100%;
 }
 
+/**** photo stream styles ****/
+
+#photos {
+    clear: both;
+}
+
+#photos li img {
+    width: 400px;
+}
+
+#photos li p {
+    width: 300px;
+}
+
+/**** end photo stream styles ****/
