@@ -19,7 +19,7 @@ def upload(response):
     
     filename, content_type, data = response.get_file('upload_image')
     if filename:        
-        with open("/static/"+filename, 'wb') as f:
+        with open(filename, 'wb') as f:
             f.write(data)
 
            

@@ -1,11 +1,5 @@
 from tornado import Server
 
-def index(response, args):
-    if response.get_secure_cookie(args):
-        response.write("You're logged in!")
-    else:
-        response.write("You aren't logged in. :(")
-
 def login(response):
     if response.get_secure_cookie('tag_it'):
         response.write('You\'re already logged in')
@@ -35,7 +29,6 @@ def login(response):
             response.write('Incorrect Password. Try again by pressing back on your browser')
 
 server = Server()
-server.register('/profile/(.+)', index)
 server.register('/login', login)
 
 
