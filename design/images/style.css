@@ -50,6 +50,12 @@ header{
     position:relative;
     border: 0px;
 }
+hedaer h1, 
+header h2,
+header h3{
+    color:white;
+
+}
 footer {
     position:fixed;
     bottom:0;
@@ -96,6 +102,7 @@ a {
 
 .container{
     box-shadow: 1px 5px 5px 1px #ccc;
+    margin-top:10px;
 }
 .container h1, 
 .container h2,
