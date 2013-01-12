@@ -31,12 +31,12 @@ class IfNode(Node):
         return self.true.render(context) if eval(self.predicate, {}, context) else (self.false.render(context) if self.false else '')
 
 class IncludeNode(Node):
-    def __init__(self, path, var_list):
+    def __init__(self, path): #, var_dict = None):
         self.path = path
-        self.var_dict = var_dict
+        # self.var_dict = var_dict if var_dict else {}
     def render(self, context):
-        context.update(var_dict)
-        return ''.join(open(path).readlines())
+        # context.update(var_dict)
+        return ''.join(open(self.path).readlines())
 
 class ForNode(Node):
     def __init__(self, items, iterable, true, false = ''):
@@ -54,8 +54,6 @@ class ForNode(Node):
             output = ''.join(output)
         else:
             output = self.false.render(context)
-
-        # v DO NOT WANT v
         # return ''.join(self.true.render(dict(list(context.items())+[(item, i[self.items.index(item)])]) for item in self.items]) for i in iterable) if iterable else self.false.render(context)
         return output
 
@@ -71,9 +69,6 @@ class LetNode(Node):
         self.expr = expr
     def render(self, context):
         context[self.var] = eval(self.expr)
-        
-
-
 
 def render(content, context):
     
@@ -103,13 +98,21 @@ def render(content, context):
                     node.predicate = node.predicate.strip()
                     true_content = []
                     stack = 0
-##                    while stack >= 0:
-##                        if ''.join(content).startswith('{% end if %}'): stack -= 1
-##                        if ''.join(content).startswith('{% if'): stack += 1
-                    while not ''.join(content).startswith('{% end if %}'):
+                    while stack >= 0:
                         true_content.append(content.pop(0))
+                        if ''.join(content).startswith('{% end if %}'): stack -= 1
+                        if ''.join(content).startswith('{% if'): stack += 1
                     for _ in range(len('{% end if %}')): content.pop(0)
                     node.true = GroupNode(parse(true_content))
+                    node_list.append(node)
+
+                elif ''.join(content).startswith('include'): # IncludeNode
+                    for _ in range(8): content.pop(0)
+                    node = IncludeNode('')
+                    while not ''.join(content).startswith('%}'):
+                        node.path += content.pop(0)
+                    for _ in range(2): content.pop(0)
+                    node.path = node.path.strip()
                     node_list.append(node)
                     
             else: # TextNode
@@ -128,8 +131,8 @@ def render(content, context):
 
 if __name__ == '__main__':
     f = ''.join(open('template_sample.html').readlines())
-    context = {'f_name': 'my friend',
-               'f_age': '15',
+    context = {'f_name': 'john smith',
+               'f_age': '100',
                'f_gender': 'M',
                'person_name':'asem wardak'}
     print(render(f, context))
