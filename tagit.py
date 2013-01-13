@@ -124,6 +124,9 @@ def template_sample(response):
 #    context = { 'name':'Smerity', 'friends':['Ruby','Casper','Ted','Asem'], 'logged_in': True}
     context = { 'name':'Smerity', 'friends':[], 'logged_in': True}
     response.write(render('template/workshop_example.html',context))
+def profile(response):
+    context = {}
+    response.write(render('template/profile.html', context))
      
 server = Server()
 server.register("/", index)
@@ -133,6 +136,7 @@ server.register('/createlogin', createlogin)
 server.register('/login', login)
 server.register('/loggedout', loggedout)
 server.register('/stream', photostream)
+server.register('/profile', profile)
 server.register('/template_sample', template_sample)
 server.register('/friends', friends)
 server.register('/logout', loggedout)

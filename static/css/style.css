@@ -289,3 +289,15 @@ a {
 }
 
 /**** end photo stream styles ****/
+
+/**** profile styles ****/
+
+.put-shadow{
+    box-shadow: 3px 3px 5px 6px #ccc;
+}
+
+.dp{
+    margin-top: 20px;
+}
+
+/**** end profile styles ****/
