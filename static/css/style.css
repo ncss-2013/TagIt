@@ -45,7 +45,12 @@ ol{
     list-style-type:none;
     padding:7px;
     background-color:#455865;
-} 
+}
+.item a:hover{
+    color:#8C99B4;
+    width:100%;
+    height:100%;
+}
 
 .item {
     display:inline;
@@ -54,6 +59,7 @@ ol{
 
 .item a{
     text-decoration: none;
+    color:white;
 }
 .image1{
     background-image: url('/static/images/geolocate.jpg');
@@ -137,8 +143,6 @@ a {
     color:white;
 }
 
-
- 
 .register{
     background-color: rgba(79, 72, 89, 0.5);
     border-top-right-radius: 12px;
