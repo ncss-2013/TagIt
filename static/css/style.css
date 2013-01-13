@@ -68,7 +68,6 @@ ol{
 .wrapper{
     margin-left: 20px;
     margin-right:20px;
-    position: relative;
 }
 
 .wrapper2{
@@ -86,7 +85,7 @@ ol{
     position:relative;
     margin-top:20px;
     width:100%;
-    height:500px; 
+    height:400px; 
 }
 
 .landing-container h1{
@@ -152,8 +151,7 @@ a {
 .sex-text{
     color:white;
 }
-
-.register{
+ .register{
     background-color: rgba(79, 72, 89, 0.5);
     border-top-right-radius: 12px;
     border: 0;
@@ -203,7 +201,7 @@ a {
 }
 
 .container2-size{
-    height:20%;
+    height:200px;
 
  }  
     
@@ -261,6 +259,7 @@ a {
 }
 
 .full-input-box{
+    overflow:hidden;
     margin-top:5px;
     font-size:12pt;
     width:100%;
