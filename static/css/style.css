@@ -136,7 +136,6 @@ a {
     height:100px;
 }
 
-<<<<<<< .mine
 .regbutton{
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
@@ -157,7 +156,7 @@ a {
   -webkit-border-radius: 7px;
   border: 0;  
 }
-=======
+
 .btn{
   margin-left:20px;
   padding:5px 20px;
@@ -169,18 +168,11 @@ a {
   border-radius: 7px;
   border: 0;
  }
+ 
 .btn:hover{
    background-image: -webkit-linear-gradient(top, #5f75a3, #7c89a4);
 }
->>>>>>> .r66
 
-<<<<<<< .mine
-  .btn-primary:hover,
-  .btn-primary:active,
-  .btn-primary.active,
-  .btn-primary[disabled] {
-}
-=======
 .full-input-box{
     margin-left:30px;
     font-size:12pt;
@@ -188,13 +180,7 @@ a {
     padding-bottom: 10px;
     margin-top:10px;
 }
->>>>>>> .r66
 
-<<<<<<< .mine
-
-
-
-    =======
 .register-title{
     margin-left:5px;
     margin-top:5px;
@@ -204,4 +190,27 @@ a {
     margin-top:10px;
     margin-bottom:-6px;
     margin-left:30px;
-}>>>>>>> .r66
+}
+
+/**** photo stream styles ****/
+
+#photos {
+    clear: both;
+    list-style-type:none;
+    width: 700px;
+}
+#photos li figure {
+    clear: both;
+}
+
+#photos li img {
+    float: left;
+    margin-right: 20px;
+    width: 400px;
+}
+
+#photos li figcaption {
+    /*width: 300px;*/
+}
+
+/**** end photo stream styles ****/
