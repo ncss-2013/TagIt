@@ -163,9 +163,9 @@ class Photo():
     @staticmethod
     def getallpics(limit = None):
         if limit == None:
-            curs.execute("SELECT * FROM photos")
+            curs.execute("SELECT * FROM photos ORDER BY uploaddate DESC ")
         else:    
-            curs.execute("SELECT * FROM photos LIMIT " + str(int(limit)))
+            curs.execute("SELECT * FROM photos ORDER BY uploaddate DESC LIMIT " + str(int(limit)))
 
         piclist = []
         for i in curs.fetchall():
