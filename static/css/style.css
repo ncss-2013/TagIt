@@ -287,6 +287,10 @@ a {
     padding-left: 0;
 }
 
+#photos li {
+    margin-bottom: 20px;
+}
+
 #photos li figure {
     clear: both;
     border: 1px solid #ccc;
@@ -294,7 +298,6 @@ a {
     box-shadow: 2px 2px 4px #888;
     background-color: white;
     overflow: auto;
-    margin: 20px
 }
 
 #photos li img {
