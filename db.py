@@ -153,13 +153,13 @@ class Photo():
         return self.location
 
     @staticmethod
-    def getallpics(self):
+    def getallpics():
         piclist = []
         curs.execute("SELECT * FROM photos")
         for i in curs.fetchall():
-            id, location, description, uploader, uploaddate, caption, artist, url = i
-            currentpicture = Photo(id, location, description, uploader, uploaddate, caption, artist, url)
-            piclist = piclist.append(currentpicture)
+            id, lat, long, description, uploader, uploaddate, caption, artist, url = i
+            currentpicture = Photo(id, (lat, long), description, uploader, uploaddate, caption, artist, url)
+            piclist.append(currentpicture)
         return piclist
 
 class Tag():
