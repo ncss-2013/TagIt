@@ -83,12 +83,10 @@ class User():
 
     def addfriend(self, friend):
         curs.execute("INSERT INTO friends VALUES (?,?)", (self.username, friend))
-        curs.execute("INSERT INTO friends VALUES (?,?)", (friend, self.username))
         conn.commit()
         return
 
     def delfriend(self, friend):
-        curs.execute("DELETE FROM friends WHERE username = ? AND friend = ?", (friend, self.username))
         curs.execute("DELETE FROM friends WHERE username = ? AND friend = ?", (self.username, friend))
         conn.commit()
         return
@@ -109,8 +107,20 @@ class User():
         result = curs.execute("SELECT * FROM users WHERE firstname = ?", (firstname)).fetchall()
         return result
 
+    def lastnamesearch(self, lastname):
+        result = curs.execute("SELECT * FROM users WHERE lastname = ?", (lastname)).fetchall()
+        return result
+
+    def lastnamesearch(self, lastname):
+        result = curs.execute("SELECT * FROM users WHERE lastname = ?", (lastname)).fetchall()
+        return result
+
+    def locationsearch(self, country):
+        result = curs.execute("SELECT * FROM users WHERE country = ?", (country)).fetchall()
+        return result
+
 class Photo():
-    def __init__(self, id):
+    def __init__(self, id, location, description, uploader, uploaddate, caption, artist, url):
         self.id = id
         self.location = None
         self.description = None
@@ -142,10 +152,15 @@ class Photo():
         self.location = curs.fetchone()
         return self.location
 
+    @staticmethod
     def getallpics(self):
-        curs.execute("SELECT * url FROM photos")
-        self.allpics = curs.fetchall()
-        return self.allpics
+        piclist = []
+        curs.execute("SELECT * FROM photos")
+        for i in curs.fetchall():
+            id, location, description, uploader, uploaddate, caption, artist, url = i
+            currentpicture = Photo(id, location, description, uploader, uploaddate, caption, artist, url)
+            piclist = piclist.append(currentpicture)
+        return piclist
 
 class Tag():
     def __init__(self, tagid):
