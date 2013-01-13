@@ -58,10 +58,13 @@ def login(response):
             response.redirect('/?error=4')
 
 
-def index(response):   
+def index(response):
     context = make_context(response)
     context['message'] = None
 
+    if context["is_logged_in"]:
+        response.redirect('/stream')
+    
     error = response.get_field('error')
 
     if error and error in error_dict:
