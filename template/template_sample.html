@@ -3,7 +3,7 @@
     <h1>{{ person_name.title() }}</h1>
     <ul id='friends-list'>
         <li class='friend'>
-        {% for i in range(150) %} 
+        {% for i in [1, 2, 3] %} 
         {{ f_name.title() }} is {{ i }} years old and is{% if f_gender == 'M' %} Male{% else %} Female{% end if %}
         {% end for %}
         </li>
