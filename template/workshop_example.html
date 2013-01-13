@@ -1,0 +1,16 @@
+{% include template/header.html %}
+<section id = profile’>
+    {% if logged_in %}
+
+        <h1> {{ name }} </h1>
+        {% if len(friends) %}
+            <p> You have {{ len(friends) }} friend{% if len(friends) != 1 %}s{% end if %} </p>
+        {% else %}
+            <p> You have no friends lol </p> 
+        {% end if %}
+        
+    {% else %}
+        <h1> NOT AUTHORIZED </h1>
+    {% end if %}
+</section>
+{% include template/footer.html %}
