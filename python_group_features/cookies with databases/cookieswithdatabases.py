@@ -2,7 +2,7 @@
 from tornado import Server
 import sqlite3
 from template_language import *
-
+from db import *
 
 f = open('index.html', 'r')
 index_html = f.read()
