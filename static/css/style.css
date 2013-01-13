@@ -43,7 +43,7 @@ ol{
 }
 
 .image1{
-    background-image: url('/static/images/friends.jpg');
+    background-image: url('/static/images/geolocate.jpg');
 }
 .wrapper{
     margin-left: 20px;
@@ -67,16 +67,16 @@ ol{
     position:absolute;
     bottom:0;
 }
-.margin{
-    margin:20px;
+.padding{
+   padding:20px;
 }
 
 
 .margin-right{
-    margin-right:5px;
+    margin-right:3px;
 }
 .margin-left{
-    margin-left:15px;
+    margin-left:3px;
 }
     
 
@@ -124,7 +124,7 @@ a {
     width:435px;
  }
 .fourth-span{
-    width:400px;
+    width:33%;
 }
 .one-span{
     width:70px;
@@ -142,12 +142,10 @@ a {
     padding:10px;
 }
 
-.container2{   
-    margin-top:-92px;
-    margin-left:100px;
-    margin-right:10px;
- }
-    
+.container2-size{
+    height:20%;
+
+ }  
     
     
 .form-fields{
@@ -228,10 +226,24 @@ a {
     margin-top:10px;
 }
 .register-btn{
+    font-family:Muli;
+    margin-left:20px;
+    padding:5px 20px;
+    text-align:center;
+    color: #ffffff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-color: #0e8dd7;
+    background-image: -webkit-linear-gradient(top, #0e8dd7, #06659a);
+    border-radius: 12px;
+    border: 0;
     margin-top:20px;
     margin-right:20px;
     padding: 15px 50px 15px 50px;
     font-size:14pt;
+ }
+.register-btn:hover{
+   background-image: -webkit-linear-gradient(top, #06659a, #0e8dd7);
+}
     
 
 /**** photo stream styles ****/
