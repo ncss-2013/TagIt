@@ -127,6 +127,7 @@ def template_sample(response):
      
 server = Server()
 server.register("/", index)
+server.register("/home", index)
 server.register("/upload", upload)
 server.register('/createlogin', createlogin)
 server.register('/login', login)
@@ -134,4 +135,5 @@ server.register('/loggedout', loggedout)
 server.register('/stream', photostream)
 server.register('/template_sample', template_sample)
 server.register('/friends', friends)
+server.register('/logout', loggedout)
 server.run()
