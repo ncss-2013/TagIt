@@ -74,10 +74,11 @@ class Photo():
         self.artist = None
         self.url = None
         self.allpics = None
+        self.nextid = None
 
     @staticmethod
     def create(uploader, uploaddate, caption, artist, url, latitude=None, longitude=None, description=None):
-        curs.execute("INSERT INTO photos VALUES (?,?,?,?,?,?,?,?)", (latitude, longitude, description, uploader, uploaddate, caption, artist, url))
+        curs.execute("INSERT INTO photos (latitude, longitude, description, uploader, uploaddate, caption, artist, url)VALUES (?,?,?,?,?,?,?,?)", (latitude, longitude, description, uploader, uploaddate, caption, artist, url))
         conn.commit()
         return
     
@@ -86,10 +87,16 @@ class Photo():
         conn.commit()
         return
     ## Do we need this?
-    def getallprofilepicurl(self,):
+    def getallprofilepicurl(self):
         curs.execute("SELECT profilepicurl FROM photos WHERE id = ?", self.id)
         self.profilepicurl = curs.fetchall()
 
+    @classmethod
+    def getnextid(self):
+        curs.execute("SELECT max(id)+1 FROM photos")
+        self.nextid = curs.fetchall()
+        return self.nextid
+    
     def getlocation(self):
         curs.execute("SELECT longitude FROM photos WHERE id = ?", self.id)
 

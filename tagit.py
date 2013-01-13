@@ -131,9 +131,22 @@ def home(response):
 
 
 def upload(response):
-
-    output = create(''.join(open('template/upload.html').readlines()), {})
-    response.write(output)
+    response.write("""
+<!doctype html>
+    <html>
+        <head></head>
+        <body>
+            <a href = "/"> Home <a>
+            <form id="upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="upload_image"></br>
+                <input type="text" name="tags"> Tags (seperated by spaces, cases are irrelevant) </input><br>
+                <input type="text" name="description" style="width:400px; height:75px;"> Description</input><BR>
+                <input type="submit" name="Submit" value="Upload Image"></br>
+                <a href = "/piclist"> piclist <a>
+            </form>
+        </body>
+    <html>
+""")
 
     # create new fields and fill them
     # with the fields of the response.get_file tuple
@@ -143,22 +156,28 @@ def upload(response):
 
     #retrieve the input tags
     tags = response.get_field('tags')
+
+    description = response.get_field('description')
     
     
     #checks if there is a file in the request
-    
+    print(db.Photo.getnextid())
     if filename:
         
         #open and create a new file within
         #static folder (static is safe)
         #we are writing raw bytes to file (that's how the site will recieve them)
+
         
-        with open("static/uploads/images/"+filename, 'wb') as f:
+        
+        with open("static/uploads/images/"+str(db.Photo.getnextid()[0][0])+".jpg" , 'wb') as f:
 
             #write the raw data we got from the tuple to the file
             
             f.write(data)
 
+        db.Photo.create("authorname","0",filename,"banksy", "static/uploads/images/"+str(db.Photo.getnextid()[0][0])+".jpg","1","1",description)
+                     
         with open("static/uploads/tags/"+ filename.replace('.', '')+".txt", "w") as t:
 
             t.write(tags)
@@ -193,15 +212,11 @@ def photostream(response):
     <html>
         <body>
             <a href = "/home"> home <a>
-            <div>""")
-    for file in os.listdir("static/uploads/images"):
-        response.write("""<img src = "/static/uploads/images/"""+file+""""><br>""")
-    response.write("""<p>
+            <div>"""+
+#this will eventualy allow parameters
+    getallpics()
                 
-            </p>
-            </div>
-        </body>
-    </html>"""
+    +"</p></div></body></html>"
     )
         
 
