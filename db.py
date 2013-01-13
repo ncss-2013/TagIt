@@ -81,9 +81,9 @@ class User():
         self.friend = curs.fetchall()
         return self.friend
 
-    def ifuserexists(self):
+    def exists(self):
         result = curs.execute("SELECT COUNT(*) FROM users WHERE username = ?", (self.username,)).fetchone()[0]
-        if result == "0":
+        if result == 0:
             return False
         else:
             return True
@@ -127,7 +127,8 @@ class Photo():
         curs.execute("INSERT INTO photos (latitude, longitude, description, uploader, uploaddate, caption, artist, url) VALUES (?,?,?,?,datetime('now'),?,?,?)",
                      (latitude, longitude, description, uploader, caption, artist, url))
         conn.commit()
-        curs.execute("SELECT id FROM photos WHERE id == (SELECT max(id) FROM photos)")
+        #curs.execute("SELECT id FROM photos WHERE id == (SELECT max(id) FROM photos)")
+        curs.execute("SELECT max(id) FROM photos")
         id = curs.fetchone()[0]
         return Photo.find(id)
 
@@ -204,10 +205,10 @@ class Tag():
 ##testuser.setpassword("23456")
 ##print(testuser.getpassword())
 
-if __name__ == "__main__":
-    testuser = User.find("Jess_User")
-    print(testuser)
-    p = Photo.create("Smerity", "lolcats", "0.jpg")
-    if not User.find("smerity"):
-        u = User.create("smerity", "smurdy", None, "Stephen", "Merity", "smerity@smerity.com", None, "M", 18)
-    u = User.find("smerity")
+##if __name__ == "__main__":
+##    testuser = User.find("Jess_User")
+##    print(testuser)
+##    p = Photo.create("Smerity", "lolcats", "0.jpg")
+##    if not User.find("smerity"):
+##        u = User.create("smerity", "smurdy", None, "Stephen", "Merity", "smerity@smerity.com", None, "M", 18)
+##    u = User.find("smerity")

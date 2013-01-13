@@ -83,10 +83,18 @@ Example uses:
         # will now return '12345'
 
     # there are things that once set initially when the object is created cannot be changed (username, sex, age/birthday)
-        
-    
+ 
+HOW TO CHECK IF USER EXISTS
+    u = User("Alex Harper")
+        u.exists()
+            # Will return TRUE or FALSE
+            # "Alex Harper" is the username to check!
 
-    photo1 = Photo.create("id", "latitude", "longitude", etc...)
+    photo1 = Photo.create(uploader, caption, url, latitude=None, longitude=None, description=None, artist=None)
+        # Only first three parameters are required!
+        # Returns photo (Object) as
+
+        a Photo (Class)
 
     photo1.setprofilepicurl()
         # changes the profile picture url. don't know how we are implementing photos
