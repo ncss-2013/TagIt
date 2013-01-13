@@ -104,7 +104,6 @@ def upload(response):
         Photo.create("authorname","0",filename,"banksy", "static/uploads/images/"+str(Photo.getnextid()[0][0])+".jpg","1","1",description)
                      
         with open("static/uploads/tags/"+ filename.replace('.', '')+".txt", "w") as t:
-
             t.write(tags)
 
 def photostream(response):

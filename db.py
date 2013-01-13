@@ -106,7 +106,8 @@ class User():
             return True
 
     def firstnamesearch(self):
-        result = curs.execute("SELECT *
+        pass
+##        result = curs.execute("SELECT *
 
 class Photo():
     def __init__(self, id):
@@ -163,8 +164,10 @@ class Tag():
         self.tagid = curs.fetchone()[0]
         
     def getalltagstring(self):
+        pass
 
     def getallphoto(self, tagstring):
+        pass
         
     ## RETURN LIST
 ##    def getpics(self, criteria, order, limit):
