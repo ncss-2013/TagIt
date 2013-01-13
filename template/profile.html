@@ -32,28 +32,13 @@
                 </form>
             </div>
         </div>
+        
     </div>
     <div class="border bots">
-        <ul class="border">
-            <li> 
-                <img src="/static/images/friends.png">
-            </li>
-            <li>
-                <figure>
-                <a href="/static/uploads/images/{{ photo.url }}" rel="lightbox" title="{{ photo.caption }}">
-                    <img src="/static/uploads/images/{{ photo.url }}" width="200">
-                </a>
-                <figcaption>
-                    <span class="user">{{ photo.uploader }}</span>
-                    <p>
-                    {{ photo.uploaddate }} <br /> <br /> 
-                    </p>
-                    <p>
-                    {{ photo.description }}
-                    </p>
-                </figcaption>
-                </figure>
-            </li>
-        </ul>
+        <div>
+            {% for p in photo %}
+                <p>{{ photo.url }}</p>
+            {% end for %}
+        </div>
     </div>
     {% include template/footer.html %}   
