@@ -14,9 +14,7 @@ error_dict = {
     '4':'Incorrect Password'
     }
 
-
 cgitb.enable()
-
 
 
 def createlogin(response):
@@ -103,29 +101,35 @@ def upload(response):
         with open("static/uploads/tags/"+ filename.replace('.', '')+".txt", "w") as t:
             t.write(tags)
 
+
 def photostream(response):
     photos = Photo.getallpics()
     context = make_context(response)
     context['photos'] = photos
     response.write(render('template/stream.html', context))
+
         
 def loggedout(response): #Loggedout page, delete cookies here
     response.clear_cookie('tag_it')
-    response.redirect('/home')
+    response.redirect('/')
+
 
 def friends (response):
     context = make_context(response)
     response.write(render('template/friends.html',context))
 
-def template_sample(response):
-#    context = { 'logged_in': False}
-#    context = { 'name':'Smerity', 'friends':['Ruby','Casper','Ted','Asem'], 'logged_in': True}
-    context = { 'name':'Smerity', 'friends':[], 'logged_in': True}
-    response.write(render('template/workshop_example.html',context))
+
+##def template_sample(response):
+###    context = { 'logged_in': False}
+###    context = { 'name':'Smerity', 'friends':['Ruby','Casper','Ted','Asem'], 'logged_in': True}
+##    context = { 'name':'Smerity', 'friends':[], 'logged_in': True}
+##    response.write(render('template/workshop_example.html',context))
+
 
 def profile(response):
     context = make_context(response)
     response.write(render('template/profile.html', context))
+
      
 server = Server()
 server.register("/", index)
@@ -133,10 +137,9 @@ server.register("/home", index)
 server.register("/upload", upload)
 server.register('/createlogin', createlogin)
 server.register('/login', login)
-#server.register('/loggedout', loggedout)
 server.register('/stream', photostream)
 server.register('/profile', profile)
-server.register('/template_sample', template_sample)
+##server.register('/template_sample', template_sample)
 server.register('/friends', friends)
 server.register('/logout', loggedout)
 server.run()
