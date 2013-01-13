@@ -3,6 +3,7 @@ from tornado import Server
 import sqlite3
 from template_language import *
 from db import *
+from functions import *
 import os
 import cgitb
 
@@ -13,9 +14,10 @@ error_dict = {
     '4':'Incorrect Password'
     }
 
-context = {'cookie': '138457928345'}
 
 cgitb.enable()
+
+
 
 def createlogin(response):
     if response.get_secure_cookie('tag_it'):#check if we have the tag_it cookie (are we logged in?), so the user can't log in.
@@ -54,8 +56,9 @@ def login(response):
 
 
 def index(response):
+    context = make_context(response)
     context['message'] = None
-    context['cookie'] = 'lol'
+    
     error = response.get_field('error')
 
     if error and error in error_dict:
@@ -65,23 +68,6 @@ def index(response):
 
 
 def upload(response):
-##    response.write("""
-##<!doctype html>
-##    <html>
-##        <head></head>
-##        <body>
-##            <a href = "/"> Home <a>
-##            <form id="upload" method="post" enctype="multipart/form-data">
-##                <input type="file" name="upload_image"></br>
-##                <input type="text" name="tags"> Tags (seperated by spaces, cases are irrelevant) </input><br>
-##                <input type="text" name="description" style="width:400px; height:75px;"> Description</input><BR>
-##                <input type="submit" name="Submit" value="Upload Image"></br>
-##                <a href = "/piclist"> piclist <a>
-##            </form>
-##        </body>
-##    <html>
-##""")
-
     response.write(render('template/upload.html', context))
 
     # create new fields and fill them
@@ -113,7 +99,8 @@ def upload(response):
 
 def photostream(response):
     photos = Photo.getallpics()
-    context = {'photos': photos}
+    context = make_context(response)
+    context['photos'] = photos
     response.write(render('template/stream.html', context))
         
 def loggedout(response): #Loggedout page, delete cookies here
@@ -121,7 +108,7 @@ def loggedout(response): #Loggedout page, delete cookies here
     response.redirect('/home')
 
 def friends (response):
-    context = {}
+    context = make_context(response)
     response.write(render('template/friends.html',context))
 
 def template_sample(response):
@@ -129,8 +116,9 @@ def template_sample(response):
 #    context = { 'name':'Smerity', 'friends':['Ruby','Casper','Ted','Asem'], 'logged_in': True}
     context = { 'name':'Smerity', 'friends':[], 'logged_in': True}
     response.write(render('template/workshop_example.html',context))
+
 def profile(response):
-    context = {}
+    context = make_context(response)
     response.write(render('template/profile.html', context))
      
 server = Server()
@@ -139,7 +127,7 @@ server.register("/home", index)
 server.register("/upload", upload)
 server.register('/createlogin', createlogin)
 server.register('/login', login)
-server.register('/loggedout', loggedout)
+#server.register('/loggedout', loggedout)
 server.register('/stream', photostream)
 server.register('/profile', profile)
 server.register('/template_sample', template_sample)
