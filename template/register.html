@@ -9,10 +9,10 @@
             <input type="password" class="full-input-box" name="password_check" placeholder="Retype Password"></input></br>
             <h4 style="color:white">Birthday</h4>
             <input type="date" class="full-input-box" name="birthday" placeholder="Birthday"></input></br>
-            <input type="radio" class="radio-button" name="sex" style="color:white"></input>
-            <input type="radio" class="radio-button" name="sex" style="color:white"></input>
-            <input class="register-btn full-input-box"type="submit" value="Register" onClick="" style="display:none">
+            <input type="radio" class="radio-button" name="sex" style="color:white"></input>Male
+            <input type="radio" class="radio-button" name="sex" style="color:white"></input>Female
+            <input class="register-btn full-input-box" type="submit" value="Register" onClick="" style="display:none">
         </div>
-            <input class="register-btn full-input-box"type="button" value="Register" onClick="$('#register-box').slideDown()">
+        <input class="register-btn full-input-box" type="submit" value="Register" onClick="if(!$('#register-box').is(':visible')){$('#register-box').slideDown(); event.preventDefault();}">
     </div>
 </form> 
