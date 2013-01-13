@@ -39,6 +39,14 @@ CREATE TABLE photos (
     FOREIGN KEY (photoid) REFERENCES photos(id)
  );
  
+ CREATE TABLE friends (
+    username TEXT,
+    friend TEXT,
+    PRIMARY KEY (username, friend)
+    FOREIGN KEY (username) REFERENCES users(username),
+    FOREIGN KEY (friend) REFERENCES users(username)
+);
+    
  CREATE TABLE artists (
     /*(if username is null, not registered, if username not null...) registered BOOLEAN,*/
     username TEXT,

@@ -2,8 +2,8 @@
 {% include template/navigation.html %}
     <div class="wrapper">
         <ul>
-        {% for i in ['Ted Pettigrove', 'Lucy Doan', 'Alison Wong', 'Asem Wardak', 'Smerity', 67887] %}
-            <li><img src='logo.png'>{{ i }}</li>
+        {% for friend in friends %}
+            <li><img src='logo.png'>{{ friend.username }}</li>
         {% end for %}
         </ul>
     </div>

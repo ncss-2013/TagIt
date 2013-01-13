@@ -131,6 +131,34 @@ def profile(response):
     context = make_context(response)
     response.write(render('template/profile.html', context))
 
+def addfriend(response, other_user):
+    context = make_context(response)
+    if context [ 'is_logged_in' ] == True:
+        # TODO: Ensure other_user is a real user
+        friend = other_user
+        User(context["username"]).addfriend(friend)
+        response.redirect('/user/'+friend) #profile stuff   DO NOT COMMIT
+    else:
+        response.redirect('/?error=6')
+
+def friends(response):
+    context = make_context(response)
+    if context [ 'is_logged_in' ] == True:
+        context["friends"] = User(context["username"]).listfriends()
+    response.write(render('template/friends.html',context))
+
+def delfriend(response, other_user):
+    context = make_context(response)
+    if context [ 'is_logged_in' ] == True:
+        listfriends = User(context["username"]).listfriends()\
+
+        friend_names = []
+        for friend in listfriends:
+            friend_names.append(friend.username)
+
+        if other_user in friend_names:
+            User(context["username"]).delfriend(other_user)
+            response.redirect('/user/'+other_user)
      
 server = Server()
 server.register("/", index)
@@ -142,5 +170,7 @@ server.register('/stream', photostream)
 server.register('/profile', profile)
 ##server.register('/template_sample', template_sample)
 server.register('/friends', friends)
+server.register('/addfriend/(.+)', addfriend)
+server.register('/delfriend/(.+)', delfriend)
 server.register('/logout', loggedout)
 server.run()

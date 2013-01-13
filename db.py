@@ -67,7 +67,7 @@ class User():
         return
 
     def addfriend(self, friend):
-        curs.execute("INSERT INTO friends VALUES (?,?)", (self.username, friend))
+        curs.execute("INSERT INTO friends (username, friend) VALUES (?,?)", (self.username, friend))
         conn.commit()
         return
 
@@ -78,8 +78,11 @@ class User():
 
     def listfriends(self):
         curs.execute("SELECT friend FROM friends WHERE username = ?", (self.username,))
-        self.friend = curs.fetchall()
-        return self.friend
+        friends = curs.fetchall()
+        self.friends = []
+        for friend in friends:
+            self.friends.append(User(friend[0]))
+        return self.friends
 
     def exists(self):
         result = curs.execute("SELECT COUNT(*) FROM users WHERE username = ?", (self.username,)).fetchone()[0]
