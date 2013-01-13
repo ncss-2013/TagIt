@@ -8,7 +8,7 @@ class GroupNode(Node):
     def __init__(self, children = None):
         self.children = children if children else []
     def _render(self, context):
-        return ''.join(child._render(context) for child in self.children)
+        return ''.join(str(child._render(context)) for child in self.children)
 
 class TextNode(Node):
     def __init__(self, content = ''):
@@ -20,7 +20,7 @@ class PythonNode(Node):
     def __init__(self, code = ''):
         self.code = code
     def _render(self, context):
-        return str(eval(self.code, {}, context)) if self.code else 'Not Implemented!'
+        return eval(self.code, {}, context) if self.code else 'Not Implemented!'
 
 class IfNode(Node):
     def __init__(self, predicate, true, false = ''):
@@ -47,8 +47,12 @@ class ForNode(Node):
     def _render(self, context):
         output = []
         if self.iterable:
+            print(self.iterable)
+            print(self.items)
             for i in self.iterable._render(context):
-                var_list = [(item, i[self.items.index(item)]) for item in self.items]
+                var_list = [(self.items[0], i)] # only supporting assigning 1 var in for statement
+                # var_list = [(item, self.items[self.items.index(item)]) for item in self.items]
+                print(self.items)
                 new_context = dict(list(context.items()) + var_list)
                 output.append(self.true._render(new_context))
             output = ''.join(output)
@@ -69,10 +73,6 @@ class LetNode(Node):
         self.expr = expr
     def _render(self, context):
         context[self.var] = eval(self.expr)
-
-
-
-
 
 def parse(content, node_list = None):
     content = list(content)
@@ -151,7 +151,6 @@ def parse(content, node_list = None):
                             if ''.join(content).startswith('{% end for %}'): stack_counter -= 1
                             if ''.join(content).startswith('{% for'): stack_counter += 1
                 for _ in range(len('{% end for %}')): content.pop(0)
-                print(''.join(true_content))
                 node.true = GroupNode(parse(true_content))
                 if false_content: node.false = GroupNode(parse(false_content))
                 node_list.append(node)
@@ -166,7 +165,7 @@ def parse(content, node_list = None):
 def create(content, context):
     raw = parse(content)
     output = ''
-    for part in raw: output += part._render(context)
+    for part in raw: output += str(part._render(context))
     return output
 def render(f, c): return create(open(f, 'rU').read(), c)
 # ----------------------------
@@ -177,7 +176,7 @@ if __name__ == '__main__':
                'f_age': '100',
                'f_gender': 'F',
                'person_name':'asem wardak'}
-    output_file = open('output.html', 'w')
+    output_file = open('template/test_output.html', 'w')
     output_file.write(render(f, context))
     output_file.close()
     print(render(f, context))
