@@ -47,7 +47,7 @@ class ForNode(Node):
     def render(self, context):
         output = []
         if iterable:
-            for i in iterable:
+            for i in iterable.render(context):
                 var_list = [(item, i[self.items.index(item)]) for item in self.items]
                 new_context = dict(list(context.items()) + var_list)
                 output.append(self.true.render(new_context))
@@ -122,6 +122,40 @@ def create(content, context):
                     for _ in range(2): content.pop(0)
                     node.path = node.path.strip()
                     node_list.append(node)
+
+##                elif ''.join(content).startswith('for'): # ForNode
+##                    for _ in range(4): content.pop(0)
+##                    node = ForNode([], PythonNode(''), '')#items, iterable, true, false = '')
+##                    items_str = ''
+##                    iterable_str = ''
+##                    while not ''.join(content).startswith('in'):
+##                        items_str += content.pop(0)
+##                    node.items = items_str.split()
+##                    for _ in range(3): content.pop(0)
+##                    while not ''.join(content).startswith('%}'):
+##                        iterable_str += content.pop(0)
+##                    node.iterable = PythonNode(iterable_str.strip())
+##                    
+##                    true_content = []
+##                    false_content = []
+##                    stack = 0
+##                    while stack >= 0:
+##                        true_content.append(content.pop(0))
+##                        if ''.join(content).startswith('{% end for %}'): stack -= 1
+##                        if ''.join(content).startswith('{% for'): stack += 1
+##                        if ''.join(content).startswith('{% else %}') and stack == 0:
+##                            for _ in range(10): content.pop(0)
+##                            while stack >= 0:
+##                                false_content.append(content.pop(0))
+##                                if ''.join(content).startswith('{% end for %}'): stack -= 1
+##                                if ''.join(content).startswith('{% for'): stack += 1
+##                    for _ in range(len('{% end for %}')): content.pop(0)
+##                    node.true = GroupNode(parse(true_content))
+##                    if false_content: node.false = GroupNode(parse(false_content))
+##                    node_list.append(node)
+                    
+                    
+                    
                     
             else: # TextNode
                 node = TextNode('')
@@ -138,7 +172,7 @@ def create(content, context):
     return output
 
 if __name__ == '__main__':
-    f = ''.join(open('/template_sample.html').readlines())
+    f = ''.join(open('template/template_sample.html').readlines())
     context = {'f_name': 'john smith',
                'f_age': '100',
                'f_gender': 'F',

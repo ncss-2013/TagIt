@@ -1,9 +1,11 @@
-{% include cat.html %}
+{% include template/cat.html %}
 <section id='profile'>
     <h1>{{ person_name.title() }}</h1>
     <ul id='friends-list'>
         <li class='friend'>
-        {{ f_name.title() }} is {{ 150 }} years old and is{% if f_gender == 'M' %} Male{% else %} Female{% end if %}
+        {% for i in range(150) %} 
+        {{ f_name.title() }} is {{ i }} years old and is{% if f_gender == 'M' %} Male{% else %} Female{% end if %}
+        {% end for %}
         </li>
     </ul>
 </section>
