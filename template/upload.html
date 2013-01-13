@@ -1,0 +1,17 @@
+<!doctype html>
+    <html>
+        <head></head>
+            {% include template/header.html %}
+                <body>
+                    <a href = "/"> Home <a>
+                    <form id="upload" method="post" enctype="multipart/form-data">
+                        <input type="file" name="upload_image"></br>
+                        Tags (seperated by spaces, cases are irrelevant): <input type="text" name="tags">  </input><br>
+                        <input type="text" name="description" style="width:400px; height:75px;"> Description</input><BR>
+                        <input type="submit" name="Submit" value="Upload Image"></br>
+                        <a href = "/piclist"> piclist <a>
+                    </form>
+                </body>
+                {% include template/footer.html %}
+                
+    <html>

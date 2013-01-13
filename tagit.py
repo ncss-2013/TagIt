@@ -131,22 +131,9 @@ def home(response):
 
 
 def upload(response):
-    response.write("""
-<!doctype html>
-    <html>
-        <head></head>
-        <body>
-            <a href = "/"> Home <a>
-            <form id="upload" method="post" enctype="multipart/form-data">
-                <input type="file" name="upload_image"></br>
-                <input type="text" name="tags"> Tags (seperated by spaces, cases are irrelevant) </input><br>
-                <input type="text" name="description" style="width:400px; height:75px;"> Description</input><BR>
-                <input type="submit" name="Submit" value="Upload Image"></br>
-                <a href = "/piclist"> piclist <a>
-            </form>
-        </body>
-    <html>
-""")
+
+    output = create(''.join(open('template/upload.html').readlines()), {})
+    response.write(output)
 
     # create new fields and fill them
     # with the fields of the response.get_file tuple
