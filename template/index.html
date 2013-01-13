@@ -1,5 +1,7 @@
 {% include template/header.html %}
-{% include template/navigation.html %}
+    {% if is_logged_in %}
+        {% include template/navigation.html %}
+    {% end if %}
     <div class="wrapper">
         <div class="landing-container">
             <h1>Art off the street</h1>
