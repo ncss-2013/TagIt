@@ -5,6 +5,7 @@ from template_language import *
 from db import *
 import os
 import cgitb
+cgitb.enable()
 
 error_dict = {
     '1':'You\'re already logged in!',
@@ -12,8 +13,6 @@ error_dict = {
     '3':'',
     '4':'Incorrect Password'
     }
-
-cgitb.enable()
 
 def createlogin(response):
     if response.get_secure_cookie('tag_it'):#check if we have the tag_it cookie (are we logged in?), so the user can't log in.
@@ -35,7 +34,6 @@ def createlogin(response):
         else:
             response.redirect('/?error=3')
       
-
 def login(response):
     if response.get_secure_cookie('tag_it'):
         response.redirect('/?error=1')
@@ -50,7 +48,6 @@ def login(response):
         else:
             response.redirect('/?error=4')
 
-
 def index(response):
     context = {'message': None}
     error = response.get_field('error')
@@ -59,7 +56,6 @@ def index(response):
         context['message'] = error_dict[error]
   
     response.write(render('template/index.html', context))
-
 
 def upload(response):
     response.write("""
@@ -110,7 +106,7 @@ def photostream(response):
     photos = Photo.get_all()
     context = {'photos': photos}
     response.write(render('template/stream.html', context))
-        
+     
 def loggedout(response): #Loggedout page, delete cookies here
     response.clear_cookie('tag_it')
     response.redirect('/home')
@@ -124,10 +120,11 @@ def template_sample(response):
 #    context = { 'name':'Smerity', 'friends':['Ruby','Casper','Ted','Asem'], 'logged_in': True}
     context = { 'name':'Smerity', 'friends':[], 'logged_in': True}
     response.write(render('template/workshop_example.html',context))
+   
 def profile(response):
     context = {}
     response.write(render('template/profile.html', context))
-     
+    
 server = Server()
 server.register("/", index)
 server.register("/home", index)
