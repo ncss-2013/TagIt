@@ -3,7 +3,7 @@ conn = sqlite3.connect("database.db")
 curs = conn.cursor()
 
 class User():
-    def __init__(self, username, password, profilepicurl, firstname, lastname, email, country, sex, age):
+    def __init__(self, username, password=None, profilepicurl=None, firstname=None, lastname=None, email=None, country=None, sex=None, age=None):
         self.username = username
         self.password = password
         self.profilepicurl = profilepicurl
@@ -25,8 +25,8 @@ class User():
         curs.execute("SELECT * FROM users WHERE username = ?", (username,))
         result =  curs.fetchone()
         if result:
-            username, password, firstname, profilePic, lastname, email, country, sex, age = result
-            return User(username, password, profilePic, firstname, lastname, email, country, sex, age)
+            username, password, firstname, profilepicurl, lastname, email, country, sex, age = result
+            return User(username, password, profilepicurl, firstname, lastname, email, country, sex, age)
         else:
             return None
     
