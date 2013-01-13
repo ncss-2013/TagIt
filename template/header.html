@@ -8,5 +8,9 @@
         <header>
             <img class="header">
             <img id = "wrapper" class="logo" src="/static/images/logo.png">
-            {% include template/login.html %}
+            {% if is_logged_in %}
+                {% include template/logout.html %}
+            {% else %} 
+                {% include template/logout.html %}
+            {% end if %}
         </header>
