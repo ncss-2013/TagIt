@@ -293,7 +293,7 @@ a {
     box-shadow: 2px 2px 4px #888;
     background-color: white;
     overflow: auto;
-    margin: 10px
+    margin: 20px
 }
 
 #photos li img {
@@ -346,7 +346,7 @@ a {
     box-shadow: 2px 2px 4px #888;
     background-color: white;
     overflow: hidden;
-    margin: 10px;
+    margin: 20px;
 }
 #upload h1{
     background-color: #4f4859;
