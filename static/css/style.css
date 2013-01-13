@@ -62,12 +62,14 @@ ol{
 .wrapper{
     margin-left: 20px;
     margin-right:20px;
+    position: relative;
 }
 
 .wrapper2{
     margin-left: 5%;
     margin-right:5%;
     margin-top: 10px;
+    position: relative;
 }
 
 .landing-container{
@@ -272,8 +274,9 @@ a {
 }
  
 .feed-centre{
-    position:relative;
-    float:right;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 /**** photo stream styles ****/
 
@@ -336,7 +339,6 @@ a {
  }
  
  #upload {
-    /* background-image: url(/static/images/spraycan_background.png); */
     width: 30%;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -351,7 +353,6 @@ a {
     color:white;
     padding:10px;
 }
-    
 
 #upload label {
     display: block;

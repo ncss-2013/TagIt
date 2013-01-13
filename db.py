@@ -111,7 +111,7 @@ class User():
         return self.__repr__()
 
 class Photo():
-    def __init__(self, id, latitude, longitude, description, uploader, uploaddate, caption, artist, url):
+    def __init__(self, id, latitude, longitude, description, uploader, uploaddate, caption, artist):
         self.id = id
         self.latitude = latitude
         self.longitude = longitude
@@ -120,7 +120,7 @@ class Photo():
         self.uploaddate = uploaddate
         self.caption = caption
         self.artist = artist
-        self.url = url
+        self.url = self.geturl()
 
     @staticmethod
     def create(uploader, caption, url, latitude=None, longitude=None, description=None, artist=None):
@@ -136,7 +136,7 @@ class Photo():
     def find(id):
         curs.execute("SELECT * FROM photos WHERE id = ?", (id,))
         id, latitude, longitude, description, uploader, uploaddate, caption, artist, url = curs.fetchone()
-        return Photo(id, latitude, longitude, description, uploader, uploaddate, caption, artist, url)
+        return Photo(id, latitude, longitude, description, uploader, uploaddate, caption, artist)
     
     def setprofilepicurl(self, profilepicurl):
         curs.execute("UPDATE users SET profilepicurl = ? WHERE id = ?", (profilepicurl, self.id))
@@ -144,6 +144,9 @@ class Photo():
 
     def getlocation(self):
         return self.location
+        
+    def geturl(self):
+        return "/static/uploads/images/" + str(self.id) + ".jpg"
     
     @staticmethod
     def getpicsbyusername(uploader):
@@ -153,7 +156,7 @@ class Photo():
         for i in curs.fetchall():
             
             id, lat, long, description, uploader, uploaddate, caption, artist, url = i
-            currentpicture = Photo(id, lat, long, description, uploader, uploaddate, caption, artist, url)
+            currentpicture = Photo(id, lat, long, description, uploader, uploaddate, caption, artist)
             piclist.append(currentpicture)
         return piclist # This will print in IDLE
     
@@ -168,7 +171,7 @@ class Photo():
         for i in curs.fetchall():
             
             id, lat, long, description, uploader, uploaddate, caption, artist, url = i
-            currentpicture = Photo(id, lat, long, description, uploader, uploaddate, caption, artist, url)
+            currentpicture = Photo(id, lat, long, description, uploader, uploaddate, caption, artist)
             piclist.append(currentpicture)
         return piclist # This will print in IDLE
 
