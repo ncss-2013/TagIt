@@ -246,6 +246,10 @@ a {
 }
     
 
+.feed-centre{
+    position:relative;
+    margin: 0 auto;
+}
 /**** photo stream styles ****/
 
 #photos {
@@ -255,15 +259,23 @@ a {
 }
 #photos li figure {
     clear: both;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 2px 2px 4px #888;
+    overflow: auto;
+    margin: 10px
 }
 
 #photos li img {
     float: left;
     margin-right: 20px;
-    width: 400px;
+    width: 300px;
+    padding: 10px;
+    /*border: 1px solid #000;*/
 }
 
 #photos li figcaption {
+    padding: 10px;
     /*width: 300px;*/
 }
 
