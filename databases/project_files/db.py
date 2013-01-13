@@ -78,14 +78,14 @@ class Photo():
         self.longitude = None
         self.description = None
         self.uploader = None
-        self.uploaddate = None
+        self.uploaddatetime = None
         self.caption = None
         self.artist = None
         self.url = None
         self.allpics = None
 
     @staticmethod
-    def create(uploader, uploaddate, caption, artist, url, latitude=None, longitude=None, description=None):
+    def create(uploader, uploaddatetime, caption, artist, url, latitude=None, longitude=None, description=None):
         curs.execute("INSERT INTO photos VALUES (?,?,?,?,?,?,?,?)", (latitude, longitude, description, uploader, uploaddate, caption, artist, url))
         conn.commit()
         return
