@@ -145,23 +145,34 @@ class Photo():
         return self.location
 
     @staticmethod
-    def getallpics():
-        curs.execute("SELECT * FROM photos")
+    def getallpics(limit = None):
+        if limit == None:
+            curs.execute("SELECT * FROM photos")
+        else:    
+            curs.execute("SELECT * FROM photos LIMIT " + str(int(limit)))
 
         piclist = []
         for i in curs.fetchall():
-            print(i)
+            
             id, lat, long, description, uploader, uploaddate, caption, artist, url = i
             currentpicture = Photo(id, lat, long, description, uploader, uploaddate, caption, artist, url)
             piclist.append(currentpicture)
-            
-        return piclist
+        return piclist # This will print in IDLE
 
     def __repr__(self):
         return "<Photo: {} ({})>".format(self.caption, self.uploader)
 
     def __str__(self):
         return self.__repr__()
+
+##     RETURN LIST
+##    def getpicsurl(self, criteria, order, limit):
+##        curs.execute("SELECT url FROM photos WHERE ? ORDER BY ? DESC LIMIT ?", criteria, order, limit)
+##        self.url = curs.fetchall()
+##        return self.url
+
+
+
 
 class Tag():
     def __init__(self, tagid):
@@ -184,12 +195,7 @@ class Tag():
     
     def getallphoto(self, tagstring):
         pass
-    ## RETURN LIST
-##    def getpicsurl(self, criteria, order, limit):
-##        curs.execute("SELECT url FROM photos WHERE ? ORDER BY ? DESC LIMIT ?", criteria, order, limit)
-##        self.url = curs.fetchall()
-##        return self.url
-##
+
 
 
 ##testuser = User("Jess_User")

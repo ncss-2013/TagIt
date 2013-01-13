@@ -91,7 +91,31 @@ Example uses:
     photo1.setprofilepicurl()
         # changes the profile picture url. don't know how we are implementing photos
 
-    photo1.getallphotos()
-        # literally gets all photos
 
-    photo1.getpics(criteria, order, limit)
+    
+GET ALL PICTURE DETAILS WITH LIMIT
+    Photo.getallpics(10)
+        # This will get the first 10 pictures based on Increasing ID's in a List
+
+OBTAIN SPECIFIC DETAILS FOR EACH IMAGE        
+    photos = Photo.getallpics(10)
+        for photo in photos:
+            print(photo.url)
+    # This will print all of the url's up to the 10th picture.    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
