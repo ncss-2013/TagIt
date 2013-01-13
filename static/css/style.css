@@ -1,15 +1,17 @@
 
 /* Defining text styles*/
 
-@font-face {
+@font-face{
     font-family: Muli;
     src: url('Muli-Regular.ttf');
 }
-.form-text{
-    color:black;
-}
 
-h1, h2, h3, h4, h5, h6, p, ol, ul{
+@font-face{
+    font-family: Pictos;
+    src: url('Pictos.otf');
+}      
+
+h1, h2, h3, h4, h5, h6, p ,ol, ul{
     font-family:Muli;
     padding-bottom:10px;
 }
@@ -39,19 +41,44 @@ ol{
     list-style-type:decimal;
     padding-left: 40px;
 }
-    
 
+.image1{
+    background-image: url('/static/images/friends.jpg');
+}
 .wrapper{
     margin-left: 20px;
     margin-right:20px;
 }
 
 .landing-container{
+    background-image:url('/static/images/mad_graff.jpg');
+    background-size:100%;
+    position:relative;
     margin-top:20px;
     width:100%;
     height:45%;
     
 }
+.landing-container h1{
+    background-color: rgba(79, 72, 89, 0.5);
+    padding: 5px 80px;
+    width:87%;
+    color:white;
+    position:absolute;
+    bottom:0;
+}
+.margin{
+    margin:20px;
+}
+
+
+.margin-right{
+    margin-right:5px;
+}
+.margin-left{
+    margin-left:15px;
+}
+    
 
 header{
     background-color:#455865;
@@ -84,21 +111,12 @@ a {
     top:0;
     height:90px;
 }
-
-.photooftheday{
-    margin-top: 600px;
-    width:400px;
-    box-shadow: 3px 3px 5px 6px #ccc;
-}
-
 .pull-right {
     float:right;
 }
-
 .pull-left{
     float:left;
 }
-
 .third-span{
     width:500px;
 }
@@ -106,7 +124,10 @@ a {
     width:435px;
  }
 .fourth-span{
-    width:370px;
+    width:400px;
+}
+.one-span{
+    width:70px;
 }
 
 .container{
@@ -120,12 +141,21 @@ a {
     color:white;
     padding:10px;
 }
+
+.container2{   
+    margin-top:-92px;
+    margin-left:100px;
+    margin-right:10px;
+ }
+    
+    
+    
 .form-fields{
     margin-left:-50px;
  } 
  
 .input-box{
-    text-align: middle; 
+    vertical-align:text-bottom;
     margin-left:30px;
     font-size:12pt;
     padding-right:0px;
@@ -173,7 +203,8 @@ a {
   border: 0;  
 }
 
-.btn{
+.btn{  
+  font-family:Muli;
   margin-left:20px;
   padding:5px 20px;
   text-align:center;
@@ -196,17 +227,12 @@ a {
     padding-bottom: 10px;
     margin-top:10px;
 }
-
-.register-title{
-    margin-left:5px;
-    margin-top:5px;
- }
- 
-.birthday-text{
-    margin-top:10px;
-    margin-bottom:-6px;
-    margin-left:30px;
-}
+.register-btn{
+    margin-top:20px;
+    margin-right:20px;
+    padding: 15px 50px 15px 50px;
+    font-size:14pt;
+    
 
 /**** photo stream styles ****/
 

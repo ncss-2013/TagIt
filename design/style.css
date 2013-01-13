@@ -54,36 +54,15 @@ h4{
     box-shadow: 3px 3px 5px 6px #ccc;
 }
 .register{
-    width:430px;
-    height:300px;
-    float:right;
-    box-shadow: 1px 5px 5px 1px #ccc;
+    padding: 5px;
 }
-.top-bar-register{
-    background-image: url('purple.png');
-    margin-top:30px;
-    width:430px;
-    height:40px;
-    float:right;
-    box-shadow: 1px 0px 5px 1px #ccc;
-}
+
 .form-fields{
     margin-left:-50px;
  } 
  
 .input-box{
-    text-align: middle; 
-    margin-left:30px;
     font-size:12pt;
-    padding-right:0px;
-    padding-bottom: 10px;
-    margin-top:15px;
-}
-.input-box-side{
-    font-size:12pt;
-    
-    padding-bottom: 10px;
-    margin-top:15px;
 }
 .drop-down-box{
     font-size:12pt;
@@ -123,11 +102,8 @@ h4{
 }
 
 .full-input-box{
-    margin-left:30px;
     font-size:12pt;
-    width:362px;
-    padding-bottom: 10px;
-    margin-top:10px;
+    width:100%;
 }
 
 .register-title{

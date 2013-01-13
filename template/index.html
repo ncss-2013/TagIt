@@ -1,10 +1,43 @@
 {% include template/header.html %}
-{% include template/navigation.html %}
     <div class="wrapper">
-        <img class = "landing-container" src="/static/images/mad_graff.jpg">
-        <div class="container fourth-span pull-left">
-            <h1>Upload</h1>
+        <div class="landing-container">
+            <div>
+                <input class="pull-right btn register-btn"type="button" value="register" onClick="">
+            </div>
+            <h1>Art off the street</h1>
         </div>
-        {% include template/register.html %}
+        
+        <div class="container fourth-span pull-left margin-right">
+            <h1>Geo Locate</h1>   
+            <div class="margin">
+                <img src="/static/images/geolocate.jpg">
+                <div class="pull-left container2">
+                    <p>Tag your photos with a location
+                    using your phone or Google Maps. People can see where you took the photo and go see it themselves!</p>
+                </div>
+            </div>            
+        </div>
+        
+        <div class="container fourth-span pull-left margin-left margin-right">
+            <h1>Follow</h1>   
+            <div class="margin">
+                <img src="/static/images/friends.jpg">
+                <div class="pull-left container2">
+                    <p>Follow your friends or artists as they post the art of the street!</p>
+                </div>
+            </div>        
+        </div>
+        <div class="container fourth-span pull-right">
+            <h1>Upload</h1> 
+            <div class="margin">
+                <img src="/static/images/imageicon.png" width="100" height="80">
+                
+                <div class="pull-left container2">
+                    <p>lol</p>
+                </div>
+            </div>       
+            
+        </div>
+        <!-- {% include template/register.html %} --> 
     </div>
-</html>
+{% include template/footer.html %}
