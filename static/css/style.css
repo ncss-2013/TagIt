@@ -11,9 +11,8 @@
     src: url('Pictos.otf');
 }      
 
-h1, h2, h3, h4, h5, h6, p ,ol, ul{
+h1, h2, h3, h4, h5, h6, p ,ol, ul,body{
     font-family:Muli;
-    padding-bottom:10px;
 }
 h1{
     font-size:24px;
@@ -92,6 +91,9 @@ ol{
 .margin-left{
     margin-left:3px;
 }
+.disply-inline{
+    display:block-inline;
+}
     
 .leffy{
     padding:0px 20px;
@@ -120,10 +122,15 @@ a {
     color: #FFFFFF;
 }
 
-
 .login{
-    margin:10px;
+    margin-top:4%;
  }
+ 
+.register{
+    background-color: rgba(79, 72, 89, 0.5);
+    border-radius: 12px;
+    border: 0;
+}
 
 .logo{
     margin-top:15px;
@@ -177,24 +184,12 @@ a {
     vertical-align:text-middle;
     font-size:12pt;
  }
-.input-box-side{
-    font-size:12pt;
-    
-    padding-bottom: 10px;
-    margin-top:15px;
-}
 .drop-down-box{
     font-size:12pt;
-    margin-left:30px;
-    padding-right:0px;
 }
 .drop-down-box-side{
     font-size:12pt;
-    padding-right:0px;
 }
-
-
-
 .footer-logo{
     height:50px;
     position:absolute;
@@ -225,7 +220,6 @@ a {
 
 .btn{  
   font-family:Muli;
-  margin-left:20px;
   padding:5px 20px;
   text-align:center;
   color: #ffffff;
@@ -241,15 +235,12 @@ a {
 }
 
 .full-input-box{
-    margin-left:30px;
+    margin-top:5px;
     font-size:12pt;
-    width:362px;
-    padding-bottom: 10px;
-    margin-top:10px;
+    width:100%;
 }
 .register-btn{
     font-family:Muli;
-    margin-left:20px;
     padding:5px 20px;
     text-align:center;
     color: #ffffff;
@@ -258,15 +249,11 @@ a {
     background-image: -webkit-linear-gradient(top, #0e8dd7, #06659a);
     border-radius: 12px;
     border: 0;
-    margin-top:20px;
-    margin-right:20px;
-    padding: 15px 50px 15px 50px;
     font-size:14pt;
  }
 .register-btn:hover{
    background-image: -webkit-linear-gradient(top, #06659a, #0e8dd7);
 }
-    
 
 .feed-centre{
     position:relative;
