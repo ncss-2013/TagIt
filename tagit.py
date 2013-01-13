@@ -11,7 +11,7 @@ error_dict = {
     '1':'You\'re already logged in!',
     '2':'No passwords have been entered',
     '3':'',
-    '4':'Incorrect Password'
+    '4':'Incorrect Username/Password'
     }
 
 cgitb.enable()
@@ -47,14 +47,15 @@ def login(response):
     else:
         loginusername = response.get_field('username')
         loginpassword = response.get_field('password')
-
-        databasepassword = User.find(loginusername).getpassword()
-        if loginpassword == databasepassword:
-            response.set_secure_cookie('tag_it', loginusername)
-            response.redirect('/')
+        if (User.find(loginusername)):
+            databasepassword = User.find(loginusername).getpassword()
+            if loginpassword == databasepassword:
+                response.set_secure_cookie('tag_it', loginusername)
+                response.redirect('/')
+            else:
+                response.redirect('/?error=4')
         else:
-            response.redirect('/?error=4')
-
+                response.redirect('/?error=4')
 
 def index(response):
     context = make_context(response)
@@ -72,6 +73,8 @@ def index(response):
 
 
 def upload(response):
+    response.write(render('template/upload.html', context))
+
     # create new fields and fill them
     # with the fields of the response.get_file tuple
     # This allows us to use each individually
@@ -87,16 +90,17 @@ def upload(response):
         #open and create a new file within
         #static folder (static is safe)
         #we are writing raw bytes to file (that's how the site will recieve them)
-        context = make_context(response)
-        photo = Photo.create(context['username'],filename,description=description)
-        with open("static/uploads/images/"+str(photo.id)+".jpg" , 'wb') as f:
+        
+        with open("static/uploads/images/"+str(Photo.getnextid()[0][0])+".jpg" , 'wb') as f:
+
             #write the raw data we got from the tuple to the file
+            
             f.write(data)
-         
+
+        Photo.create("authorname","0",filename,"banksy", "static/uploads/images/"+str(Photo.getnextid()[0][0])+".jpg","1","1",description)
+                     
         with open("static/uploads/tags/"+ filename.replace('.', '')+".txt", "w") as t:
             t.write(tags)
-            
-    response.redirect('/stream')
 
 
 def photostream(response):
