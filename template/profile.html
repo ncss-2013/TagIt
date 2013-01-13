@@ -7,7 +7,7 @@
                 <img class="" src="static/images/box.png" width="180" height="250"> 
             </div>
              <div class="fourth-span border padding user ">
-                <h2 class="name">Username</h2>
+                <h2 class="name">{{ user.username }}</h2>
             </div>
             <input class="btn-add" type="button" value="Add Friend" width="40">
             {% include template/upload.html %}
@@ -37,7 +37,9 @@
     <div class="border bots">
         <div>
             {% for photo in photos %}
-                <p>{{ photo.url }}</p>
+                <a href="{{ photo.url }}" rel="lightbox" title="{{ photo.caption }}">
+                    <img src="{{ photo.url }}" width="200">
+                </a>
             {% end for %}
         </div>
     </div>
