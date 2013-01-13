@@ -10,6 +10,8 @@ import cgitb
 context = {} # dictionary for the variables, should be taken from database and inserted into this dictionary
 cgitb.enable()
 
+import db.py
+
 #f = open('index.html', 'r')
 #index_html = f.read()
 #f.close()
@@ -183,7 +185,7 @@ def view(response, name):
 <!doctype html>
     <html>
         <body>
-            <a href = "/home"> home <a>
+            <a href = "/"> Home <a>
             <div>
                 <img src = "/static/uploads/images/"""+name+"""">
                 </br>
@@ -232,18 +234,6 @@ def piclist(response):
         </body>
     <html>
 """)
-
-##def login(response): #Login page
-##    username = response.get_field('username')
-##    password = response.get_field('password')
-##    #Here we need to connect and check with the database
-##    #Need to ensure against SQL injection attacks(?)
-##    if username == 'chicken' and password == 'egg':
-##        response.set_secure_cookie('tag_it', username)
-##        response.redirect('/home')
-##    else:
-##        response.redirect('/home')
-    
 
 def loggedout(response): #Loggedout page, delete cookies here
     response.clear_cookie('tag_it')
