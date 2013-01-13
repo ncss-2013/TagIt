@@ -47,12 +47,9 @@ class ForNode(Node):
     def _render(self, context):
         output = []
         if self.iterable:
-            print(self.iterable)
-            print(self.items)
             for i in self.iterable._render(context):
                 var_list = [(self.items[0], i)] # only supporting assigning 1 var in for statement
                 # var_list = [(item, self.items[self.items.index(item)]) for item in self.items]
-                print(self.items)
                 new_context = dict(list(context.items()) + var_list)
                 output.append(self.true._render(new_context))
             output = ''.join(output)
