@@ -6,8 +6,8 @@
             {% for photo in photos %}
             <li>
                 <figure>
-                <a href="/static/uploads/images/{{ photo.url }}" rel="lightbox" title="{{ photo.caption }}">
-                    <img src="/static/uploads/images/{{ photo.url }}" width="200">
+                <a href="{{ photo.url }}" rel="lightbox" title="{{ photo.caption }}">
+                    <img src="{{ photo.url }}" width="200">
                 </a>
                 <figcaption>
                     <span class="user">{{ photo.uploader }}</span>
