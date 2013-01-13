@@ -42,9 +42,24 @@ ol{
     padding-left: 40px;
 }
 
+.navi {
+    list-style-type:none;
+    padding:7px;
+    background-color:#455865;
+} 
+
+.item {
+    display:inline;
+    padding: 15px;
+}
+
+.item a{
+    text-decoration: none;
+}
 .image1{
     background-image: url('/static/images/geolocate.jpg');
 }
+
 .wrapper{
     margin-left: 20px;
     margin-right:20px;
