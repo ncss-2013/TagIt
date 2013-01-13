@@ -67,6 +67,7 @@ ol{
 .landing-container{
     background-image:url('/static/images/mad_graff.jpg');
     background-size:100%;
+    overflow:hidden;
     position:relative;
     margin-top:20px;
     width:100%;
@@ -75,9 +76,10 @@ ol{
 }
 .landing-container h1{
     background-color: rgba(79, 72, 89, 0.5);
-    padding: 5px 80px;
-    width:87%;
+    padding: 5px 10px;
+    width:100%;
     color:white;
+    float:left;
     position:absolute;
     bottom:0;
 }
