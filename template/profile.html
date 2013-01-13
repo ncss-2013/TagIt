@@ -1,16 +1,15 @@
 {% include template/header.html %}
 {% include template/navigation.html %}
     <div class="wrapper2">
-        <div class="pull-left fourth-span">
-            <div class="one-span container">
-                <img class="border" src="static/images/box.png" width="70" height="70"> 
-            </div>  
-            <div class="fifth-span container padding">
-                Username
-            </div> 
-            <div class="container padding">
-                upload
+        <div class="pull-left padding border third-span relly">
+            <div class="pics">
+                <img class="border" src="static/images/box.png" width="180" height="250"> 
             </div>
+             <div class="fourth-span padding user border">
+                <h2 class="name">Username</h2>
+            </div>
+            <input class="btn-add" type="button" value="Add Friend" width="40">
+            {% include template/upload.html %}
         </div>
         
         <div class="pull-left fourth-span">
