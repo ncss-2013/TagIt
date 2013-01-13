@@ -131,6 +131,16 @@ footer {
     padding: 25px 0px 0px 0px;
     font-family:"Muli";
 }
+footer p.wrapper {
+  margin-right: 40px;
+}
+.footer-logo{
+    height:50px;
+    position:absolute;
+    right: -30px;
+    top: -10px;
+}
+
 a { 
     color: #FFFFFF;
 }
@@ -211,12 +221,6 @@ a {
 }
 .drop-down-box-side{
     font-size:12pt;
-}
-.footer-logo{
-    height:50px;
-    position:absolute;
-    right: 15px;
-    top: 12px;
 }
 
 .regbutton{
