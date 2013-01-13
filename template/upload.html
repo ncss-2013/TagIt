@@ -1,11 +1,9 @@
-            {% include template/header.html %}
-            {% include template/navigation.html %}
-            <form id="upload" method="post" enctype="multipart/form-data">
-                <input type="file" name="upload_image"></br>
-                <input type="text" name="tags"> Tags (seperated by spaces, cases are irrelevant) </input><br>
-                <input type="text" name="description" style="width:400px; height:75px;"> Description</input><BR>
-                <input type="submit" name="Submit" value="Upload Image"></br>
-                <a href = "/piclist"> piclist <a>
-            </form>
-                </body>
-                {% include template/footer.html %}
+<div>
+    <form id="upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="upload_image"></br>
+        <input type="text" name="tags"> Tags (seperated by spaces, cases are irrelevant) </input><br>
+        <input type="text" name="description" style="width:400px; height:75px;"> Description</input><BR>
+        <input type="submit" name="Submit" value="Upload Image"></br>
+        <a href = "/piclist"> piclist <a>
+    </form>
+</div>
