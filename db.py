@@ -77,6 +77,16 @@ class User():
         conn.commit()
         return
 
+    def isfriends(self, other_user):
+        self.listfriends()
+        friend_names = []
+        for friend in self.friends:
+            friend_names.append(friend.username)
+        if other_user in friend_names:
+            return True
+        else:
+            return False
+
     def listfriends(self):
         curs.execute("SELECT friend FROM friends WHERE username = ?", (self.username,))
         friends = curs.fetchall()
@@ -115,7 +125,7 @@ class User():
         return self.__repr__()
 
 class Photo():
-    def __init__(self, id, latitude, longitude, description, uploader, uploaddate, caption, artist):
+    def __init__(self, id, latitude, longitude, description, uploader, uploaddate, caption, artist, url):
         self.id = id
         self.latitude = latitude
         self.longitude = longitude
@@ -124,12 +134,12 @@ class Photo():
         self.uploaddate = uploaddate
         self.caption = caption
         self.artist = artist
-        self.url = self.geturl()
+        self.url = url
 
     @staticmethod
-    def create(uploader, caption, latitude=None, longitude=None, description=None, artist=None):
+    def create(uploader, caption, url, latitude=None, longitude=None, description=None, artist=None):
         curs.execute("INSERT INTO photos (latitude, longitude, description, uploader, uploaddate, caption, artist, url) VALUES (?,?,?,?,datetime('now'),?,?,?)",
-                     (latitude, longitude, description, uploader, caption, artist, ''))
+                     (latitude, longitude, description, uploader, caption, artist, url))
         conn.commit()
         #curs.execute("SELECT id FROM photos WHERE id == (SELECT max(id) FROM photos)")
         curs.execute("SELECT max(id) FROM photos")
@@ -140,7 +150,7 @@ class Photo():
     def find(id):
         curs.execute("SELECT * FROM photos WHERE id = ?", (id,))
         id, latitude, longitude, description, uploader, uploaddate, caption, artist, url = curs.fetchone()
-        return Photo(id, latitude, longitude, description, uploader, uploaddate, caption, artist)
+        return Photo(id, latitude, longitude, description, uploader, uploaddate, caption, artist, url)
     
     def setprofilepicurl(self, profilepicurl):
         curs.execute("UPDATE users SET profilepicurl = ? WHERE id = ?", (profilepicurl, self.id))
@@ -148,9 +158,6 @@ class Photo():
 
     def getlocation(self):
         return self.location
-        
-    def geturl(self):
-        return "/static/uploads/images/" + str(self.id) + ".jpg"
     
     @staticmethod
     def getpicsbyusername(uploader):
@@ -160,22 +167,22 @@ class Photo():
         for i in curs.fetchall():
             
             id, lat, long, description, uploader, uploaddate, caption, artist, url = i
-            currentpicture = Photo(id, lat, long, description, uploader, uploaddate, caption, artist)
+            currentpicture = Photo(id, lat, long, description, uploader, uploaddate, caption, artist, url)
             piclist.append(currentpicture)
         return piclist # This will print in IDLE
     
     @staticmethod
     def getallpics(limit = None):
         if limit == None:
-            curs.execute("SELECT * FROM photos ORDER BY uploaddate DESC ")
+            curs.execute("SELECT * FROM photos")
         else:    
-            curs.execute("SELECT * FROM photos ORDER BY uploaddate DESC LIMIT " + str(int(limit)))
+            curs.execute("SELECT * FROM photos LIMIT " + str(int(limit)))
 
         piclist = []
         for i in curs.fetchall():
             
             id, lat, long, description, uploader, uploaddate, caption, artist, url = i
-            currentpicture = Photo(id, lat, long, description, uploader, uploaddate, caption, artist)
+            currentpicture = Photo(id, lat, long, description, uploader, uploaddate, caption, artist, url)
             piclist.append(currentpicture)
         return piclist # This will print in IDLE
 

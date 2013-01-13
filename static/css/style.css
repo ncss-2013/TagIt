@@ -136,15 +136,15 @@ footer p.wrapper {
 .footer-logo{
     height:50px;
     position:absolute;
-    right: -30px;
-    top: -10px;
+    right: 10px;
+    top: 10px;
 }
 
 a { 
     color: #FFFFFF;
 }
 
-div.wrapper ul li a {
+div.wrapper ul li a, #photos a {
     color: black;
     text-decoration: none;
 }

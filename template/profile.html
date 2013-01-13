@@ -9,12 +9,14 @@
              <div class="fourth-span border padding user ">
                 <h2 class="name">{{ user.username }}</h2>
             </div>
+            {% if user.username != username %}
             {% if is_friend %}
                 <a class="btn-add" type="button" href="/delfriend/{{ user.username }}">- Unfollow</a>
             {% else %}
                 <a class="btn-add" type="button" href="/addfriend/{{ user.username }}">+ Follow</a>
             {% end if %}
             {% include template/upload.html %}
+            {% end if %}
         </div>
         
         <div class="pull-left fourth-span">
