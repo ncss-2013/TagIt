@@ -1,11 +1,18 @@
 {% include template/header.html %}
 {% include template/navigation.html %}
     <div class="wrapper">
-        <ul>
-        {% for friend in friends %}
-            <li><img src='logo.png'>{{ friend.username }}</li>
-        {% end for %}
-        </ul>
+        {% if len(friends) %}
+            <ul>
+            {% for friend in friends %}
+                <li><a href="/profile/{{ friend.username }}">{{ friend.username }}</a></li>
+            {% end for %}
+            </ul>
+        {% else %}
+            <div style="padding: 10px">
+            <h2>You're currently following no-one</h2>
+            <p>Check out popular users in your photo feed to get some inspiration!</p>
+            </div>
+        {% end if %}
     </div>
 {% include template/footer.html %}
 </html>

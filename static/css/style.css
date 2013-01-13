@@ -144,6 +144,11 @@ a {
     color: #FFFFFF;
 }
 
+div.wrapper ul li a {
+    color: black;
+    text-decoration: none;
+}
+
 .login{
     margin-top:4%;
 }

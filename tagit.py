@@ -127,6 +127,7 @@ def profile(response, user):
     context = make_context(response)
     context['user'] = User.find(user)
     if context['user']:
+        context['is_friend'] = User.find(context["username"]).isfriends(user)
         photos = Photo.getpicsbyusername(user)
         context['photos'] = photos
         response.write(render('template/profile.html', context))
@@ -137,7 +138,7 @@ def addfriend(response, other_user):
         # TODO: Ensure other_user is a real user
         friend = other_user
         User(context["username"]).addfriend(friend)
-        response.redirect('/user/'+friend) #profile stuff   DO NOT COMMIT
+        response.redirect('/profile/'+friend) #profile stuff   DO NOT COMMIT
     else:
         response.redirect('/?error=6')
 
@@ -150,15 +151,9 @@ def friends(response):
 def delfriend(response, other_user):
     context = make_context(response)
     if context [ 'is_logged_in' ] == True:
-        listfriends = User(context["username"]).listfriends()\
-
-        friend_names = []
-        for friend in listfriends:
-            friend_names.append(friend.username)
-
-        if other_user in friend_names:
+        if User(context["username"]).isfriends(other_user):
             User(context["username"]).delfriend(other_user)
-            response.redirect('/user/'+other_user)
+    response.redirect('/profile/'+other_user)
      
 server = Server()
 server.register("/", index)

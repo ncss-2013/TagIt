@@ -9,7 +9,11 @@
              <div class="fourth-span border padding user ">
                 <h2 class="name">{{ user.username }}</h2>
             </div>
-            <input class="btn-add" type="button" value="Add Friend" width="40">
+            {% if is_friend %}
+                <a class="btn-add" type="button" href="/delfriend/{{ user.username }}">- Unfollow</a>
+            {% else %}
+                <a class="btn-add" type="button" href="/addfriend/{{ user.username }}">+ Follow</a>
+            {% end if %}
             {% include template/upload.html %}
         </div>
         
