@@ -1,37 +1,66 @@
 {% include template/header.html %}
-    <ul class = "landing-container feed-centre" id="photos">
+    {% include template/upload.html %}
+    
+    <ul class = "feed-centre" id="photos">
+    
         <li>
         <figure>
-            <img src="static\images\mad_graff.jpg">
-            <figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris convallis dictum faucibus.</figcaption>
-            </figure>
+            <a href="/static/images/mad_graff.jpg" rel="lightbox" title="Sweet photo from Sam.">
+                <img src="/static/images/mad_graff.jpg" width="200">
+            </a>
+            <figcaption>
+                <span class="user">Sam Tardif</span>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris convallis dictum faucibus.
+            </figcaption>
+        </figure>
         </li>
          <li>
          <figure>
-            <img src="static\images\sample_images\sample2.jpeg"> 
-            <figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris convallis dictum faucibus.</figcaption>
-            </figure>
+            <a href="/static/images/sample_images/sample2.jpeg" rel="lightbox" title="my caption">
+                <img src="/static/images/sample_images/sample2.jpeg" width="200">
+            </a>
+            <figcaption>
+                <span class="user">Fred & Wilma</span>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris convallis dictum faucibus.
+            </figcaption>
+        </figure>
         </li>
         <li>
          <figure>
-            <img src="static\images\sample_images\sample3.jpeg"> 
-            <figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris convallis dictum faucibus.</figcaption>
-            </figure>
+            <a href="/static/images/sample_images/sample3.jpeg" rel="lightbox" title="my caption">
+                <img src="/static/images/sample_images/sample3.jpeg" width="200">
+            </a>
+            <figcaption>
+                <span class="user">Mr & Mrs Smith</span>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris convallis dictum faucibus.
+            </figcaption>
+        </figure>
         </li>
          <li>
            <figure>
-            <img src="static\images\sample_images\sample4.jpeg"> 
-            <figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris convallis dictum faucibus.</figcaption>
-            </figure>
+            <a href="/static/images/sample_images/sample4.jpeg" rel="lightbox" title="my caption">
+                <img src="/static/images/sample_images/sample4.jpeg" width="200">
+            </a>
+            <figcaption>
+                <span class="user">Maxwell Smart</span>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris convallis dictum faucibus.
+            </figcaption>
+        </figure>
         </li>
         <li>
             <figure>
-            <img src="static\images\sample_images\sample5.jpeg"> 
-            <figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris convallis dictum faucibus.</figcaption>
-            </figure>
+            <a href="/static/images/sample_images/sample5.jpeg" rel="lightbox" title="my caption">
+                <img src="/static/images/sample_images/sample5.jpeg" width="200">
+            </a>
+            <figcaption>
+                <span class="user">James Bond</span>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris convallis dictum faucibus.
+            </figcaption>
+        </figure>
         </li>
         <li> 
         
         </li>
+        
     </ul>
 {% include template/footer.html %}

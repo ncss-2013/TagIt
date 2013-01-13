@@ -1,9 +1,11 @@
 <div>
     <form id="upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="upload_image"></br>
-        <input type="text" name="tags"> Tags (seperated by spaces, cases are irrelevant) </input><br>
-        <input type="text" name="description" style="width:400px; height:75px;"> Description</input><BR>
-        <input type="submit" name="Submit" value="Upload Image"></br>
-        <a href = "/piclist"> piclist <a>
+        <label>File</label>
+        <input type="file" name="upload_image">
+        <label>Tags (seperated by spaces)</label>
+        <input type="text" name="tags">
+        <label>Description</label>
+        <textarea name="description"></textarea><br>
+        <input type="submit" name="Submit" value="Upload Image" class="btn">
     </form>
 </div>
