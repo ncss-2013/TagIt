@@ -10,7 +10,7 @@ import cgitb
 context = {} # dictionary for the variables, should be taken from database and inserted into this dictionary
 cgitb.enable()
 
-import db.py
+import db
 
 #f = open('index.html', 'r')
 #index_html = f.read()
