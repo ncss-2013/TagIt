@@ -22,7 +22,31 @@
 .leffy{
     padding:0px 20px;
 }
+.alternating-rows p{
+    width:400px;
+    padding:6px 6px;
+}
+.alternating-rows p:nth-child(even){
+    background-color:#f5f5f5;
+}
 
+.alternating-rows label {
+    display:inline-block;
+    width:100px;
+}
+.alternating-rows input {
+    display:inline-block;
+    width:295px;
+}
+#info {
+    margin-top:50px;
+    margin-bottom: 20px;
+}
+.bots{
+    display:bottom;
+    clear: both;
+    margin-bottom: 100px;
+}
  .btn-add{  
   display: inline-block;
   position:absolute;

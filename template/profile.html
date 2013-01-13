@@ -2,11 +2,11 @@
 {% include template/navigation.html %}
     <link rel="stylesheet" type="text/css" href= "/static/css/profile.css">  
     <div class="wrapper2">
-        <div class="pull-left padding border third-span relly">
+        <div class="pull-left padding third-span relly">
             <div class="pics">
-                <img class="border" src="static/images/box.png" width="180" height="250"> 
+                <img class="" src="static/images/box.png" width="180" height="250"> 
             </div>
-             <div class="fourth-span padding user border">
+             <div class="fourth-span border padding user ">
                 <h2 class="name">Username</h2>
             </div>
             <input class="btn-add" type="button" value="Add Friend" width="40">
@@ -14,9 +14,46 @@
         </div>
         
         <div class="pull-left fourth-span">
-            <div class="border half-span">
-                <h3>Personal Info & Crap</h3>
+            <div class="half-span">
+                <h2 id="info">Personal Info & Crap</h2>
+                <form class="alternating-rows">
+                    <p><label>Name:</label><input></p>
+                    <p><label>Name:</label><input></p>
+                    <p><label>Name:</label><input></p>
+                    <p><label>Name:</label><input></p>
+                    <p><label>Name:</label><input></p>
+                    <p><label>Name:</label><input></p>
+                    <p><label>Name:</label><input></p>
+                    <p><label>Name:</label><input></p>
+                    <p><label>Name:</label><input></p>
+                    <p><label>Name:</label><input></p>
+                    <p><label>Name:</label><input></p>
+                    
+                </form>
             </div>
         </div>
+    </div>
+    <div class="border bots">
+        <ul class="border">
+            <li> 
+                <img src="/static/images/friends.png">
+            </li>
+            <li>
+                <figure>
+                <a href="/static/uploads/images/{{ photo.url }}" rel="lightbox" title="{{ photo.caption }}">
+                    <img src="/static/uploads/images/{{ photo.url }}" width="200">
+                </a>
+                <figcaption>
+                    <span class="user">{{ photo.uploader }}</span>
+                    <p>
+                    {{ photo.uploaddate }} <br /> <br /> 
+                    </p>
+                    <p>
+                    {{ photo.description }}
+                    </p>
+                </figcaption>
+                </figure>
+            </li>
+        </ul>
     </div>
     {% include template/footer.html %}   
