@@ -1,7 +1,11 @@
 {% include template/header.html %}
 {% include template/navigation.html %}
     <div class="wrapper">
-
+        <ul>
+        {% for i in ['Ted Pettigrove', 'Lucy Doan', 'Alison Wong', 'Asem Wardak', 'Smerity', 67887] %}
+            <li><img src='logo.png'>{{ i }}</li>
+        {% end for %}
+        </ul>
     </div>
 {% include template/footer.html %}
 </html>
