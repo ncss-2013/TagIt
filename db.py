@@ -17,13 +17,11 @@ class User():
 
     @staticmethod        
     def create(username, password, firstname, lastname, email, country, sex, age):
-##        curs.execute("INSERT INTO users VALUES ('" + str(username) + "', '" + str(password) + "', '" + str(None) + "', '" + str(firstname) + "', '" + str(lastname) + "', '" + str(email) + "', '" + str(country) + "', '" + str(sex) + "', " + str(age) +");")
         curs.execute("INSERT INTO users VALUES (?,?,NULL,?,?,?,?,?,?)", (username, password, firstname, lastname, email, country, sex, age))
         conn.commit()
         return User(username)
 
     def getpassword(self):
-        #print(self.username)
         curs.execute("SELECT password FROM users WHERE username = ?", (self.username,))
         self.password = curs.fetchone()[0]
         return self.password
@@ -93,19 +91,19 @@ class Photo():
         return
     
     def setprofilepicurl(self, profilepicurl):
-        curs.execute("UPDATE users SET profilepicurl = ? WHERE id = ?", profilepicurl, self.id)
+        curs.execute("UPDATE users SET profilepicurl = ? WHERE id = ?", (profilepicurl, self.id))
         conn.commit()
         return
     ## Do we need this?
     def getallprofilepicurl(self,):
-        curs.execute("SELECT profilepicurl FROM photos WHERE id = ?", self.id)
+        curs.execute("SELECT profilepicurl FROM photos WHERE id = ?", (self.id))
         self.profilepicurl = curs.fetchall()
 
     def getlocation(self):
-        curs.execute("SELECT longitude FROM photos WHERE id = ?", self.id)
+        curs.execute("SELECT longitude FROM photos WHERE id = ?", (self.id))
 
     def getallphotos(self):
-        curs.execute("SELECT url FROM photos WHERE id = ?", self.id)
+        curs.execute("SELECT url FROM photos WHERE id = ?", (self.id))
         self.url = curs.fetch()
         return self.url
 
@@ -113,6 +111,23 @@ class Photo():
         curs.execute("SELECT * url FROM photos")
         self.allpics = curs.fetchall()
         return self.allpics
+
+class Tag():
+    def __init__(self, id):
+        self.tagid = id
+        self.tagstring = None
+        self.photoid = None
+
+    @staticmethod
+    def create(tagid, tagstring, photoid):
+        curs.execute("INSERT INTO tags VALUES (?,?,?)", (tagid, tagstring, photoid))
+        conn.commit()
+        return
+
+    def getallphotos(self, tagstring):
+        curs.execute("SELECT photoid FROM tags WHERE tagstring = ?", (self.tagstring))
+        self.photoid = curs.fetchall()
+        return self.photoid
     
     ## RETURN LIST
 ##    def getpics(self, criteria, order, limit):
