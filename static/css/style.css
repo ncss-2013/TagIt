@@ -131,7 +131,13 @@ a {
 
 .login{
     margin-top:4%;
- }
+}
+
+.sex-text{
+    color:white;
+}
+
+
  
 .register{
     background-color: rgba(79, 72, 89, 0.5);
