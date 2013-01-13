@@ -71,7 +71,6 @@ ol{
    padding:20px;
 }
 
-
 .margin-right{
     margin-right:3px;
 }
@@ -104,6 +103,12 @@ footer {
 a { 
     color: #FFFFFF;
 }
+
+
+.login{
+    margin:10px;
+ }
+
 .logo{
     margin-top:15px;
     margin-left:0px;
@@ -153,13 +158,9 @@ a {
  } 
  
 .input-box{
-    vertical-align:text-bottom;
-    margin-left:30px;
+    vertical-align:text-middle;
     font-size:12pt;
-    padding-right:0px;
-    padding-bottom: 10px;
-    margin-top:15px;
-}
+ }
 .input-box-side{
     font-size:12pt;
     
@@ -175,6 +176,8 @@ a {
     font-size:12pt;
     padding-right:0px;
 }
+
+
 
 .footer-logo{
     height:100px;
