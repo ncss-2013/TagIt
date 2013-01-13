@@ -46,9 +46,9 @@ CREATE TABLE photos (
  );
  
  CREATE TABLE tags (
-    tagid INTEGER,
+    tagid INTEGER PRIMARY KEY AUTOINCREMENT,
     tagstring TEXT,
-    tagtype BOOLEAN
+    id INTEGER,
 ); 
  
  
