@@ -116,6 +116,15 @@ h4{
     margin-bottom:-6px;
     margin-left:30px;
 }
+ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+
+li {
+    display:inline;
+}
 
 #navigation {
 position: fixed;
