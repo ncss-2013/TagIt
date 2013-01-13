@@ -13,7 +13,7 @@ error_dict = {
     '4':'Incorrect Password'
     }
 
-context = {}
+context = {'cookie': '138457928345'}
 
 cgitb.enable()
 
@@ -65,22 +65,24 @@ def index(response):
 
 
 def upload(response):
-    response.write("""
-<!doctype html>
-    <html>
-        <head></head>
-        <body>
-            <a href = "/"> Home <a>
-            <form id="upload" method="post" enctype="multipart/form-data">
-                <input type="file" name="upload_image"></br>
-                <input type="text" name="tags"> Tags (seperated by spaces, cases are irrelevant) </input><br>
-                <input type="text" name="description" style="width:400px; height:75px;"> Description</input><BR>
-                <input type="submit" name="Submit" value="Upload Image"></br>
-                <a href = "/piclist"> piclist <a>
-            </form>
-        </body>
-    <html>
-""")
+##    response.write("""
+##<!doctype html>
+##    <html>
+##        <head></head>
+##        <body>
+##            <a href = "/"> Home <a>
+##            <form id="upload" method="post" enctype="multipart/form-data">
+##                <input type="file" name="upload_image"></br>
+##                <input type="text" name="tags"> Tags (seperated by spaces, cases are irrelevant) </input><br>
+##                <input type="text" name="description" style="width:400px; height:75px;"> Description</input><BR>
+##                <input type="submit" name="Submit" value="Upload Image"></br>
+##                <a href = "/piclist"> piclist <a>
+##            </form>
+##        </body>
+##    <html>
+##""")
+
+    response.write(render('template/upload.html', context))
 
     # create new fields and fill them
     # with the fields of the response.get_file tuple
