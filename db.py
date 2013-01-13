@@ -123,9 +123,9 @@ class Photo():
         self.url = self.geturl()
 
     @staticmethod
-    def create(uploader, caption, url, latitude=None, longitude=None, description=None, artist=None):
+    def create(uploader, caption, latitude=None, longitude=None, description=None, artist=None):
         curs.execute("INSERT INTO photos (latitude, longitude, description, uploader, uploaddate, caption, artist, url) VALUES (?,?,?,?,datetime('now'),?,?,?)",
-                     (latitude, longitude, description, uploader, caption, artist, url))
+                     (latitude, longitude, description, uploader, caption, artist, ''))
         conn.commit()
         #curs.execute("SELECT id FROM photos WHERE id == (SELECT max(id) FROM photos)")
         curs.execute("SELECT max(id) FROM photos")
