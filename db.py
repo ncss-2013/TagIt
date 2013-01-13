@@ -16,7 +16,8 @@ class User():
 
     @staticmethod        
     def create(username, password, firstname, lastname, email, country, sex, age):
-        curs.execute("INSERT INTO users VALUES ('" + str(username) + "', '" + str(password) + "', '" + str(None) + "', '" + str(firstname) + "', '" + str(lastname) + "', '" + str(email) + "', '" + str(country) + "', '" + str(sex) + "', " + str(age) +");")
+##        curs.execute("INSERT INTO users VALUES ('" + str(username) + "', '" + str(password) + "', '" + str(None) + "', '" + str(firstname) + "', '" + str(lastname) + "', '" + str(email) + "', '" + str(country) + "', '" + str(sex) + "', " + str(age) +");")
+        curs.execute("INSERT INTO photos VALUES (?,?,?,?,?,?,?,?)", (username, password, None, firstname, lastname, email, country, sex, age))
         conn.commit()
         return User(username)
 
