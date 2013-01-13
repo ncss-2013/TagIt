@@ -15,17 +15,18 @@ class User():
         self.age = age
         
     @staticmethod        
-    def create(username, password, firstname, lastname, email, country, sex, age):
-        curs.execute("INSERT INTO users VALUES (?,?,NULL,?,?,?,?,?,?)", (username, password, firstname, lastname, email, country, sex, age))
+    def create(username, password, profilepicurl, firstname, lastname, email, country, sex, age):
+        curs.execute("INSERT INTO users VALUES (?,?,?,?,?,?,?,?,?)", (username, password, profilepicurl, firstname, lastname, email, country, sex, age))
         conn.commit()
-        return User(username, password, firstname, lastname, email, country, sex, age)
+        print(firstname)
+        return User(username, password, profilepicurl, firstname, lastname, email, country, sex, age)
 
     @staticmethod
     def find(username):
         curs.execute("SELECT * FROM users WHERE username = ?", (username,))
         result =  curs.fetchone()
         if result:
-            username, password, firstname, profilepicurl, lastname, email, country, sex, age = result
+            username, password, profilepicurl, firstname, lastname, email, country, sex, age = result
             return User(username, password, profilepicurl, firstname, lastname, email, country, sex, age)
         else:
             return None
@@ -223,10 +224,10 @@ class Tag():
 ##testuser.setpassword("23456")
 ##print(testuser.getpassword())
 
-##if __name__ == "__main__":
-##    testuser = User.find("Jess_User")
+if __name__ == "__main__":
+    testuser = User.find("bkum")
 ##    print(testuser)
 ##    p = Photo.create("Smerity", "lolcats", "0.jpg")
-##    if not User.find("smerity"):
-##        u = User.create("smerity", "smurdy", None, "Stephen", "Merity", "smerity@smerity.com", None, "M", 18)
-##    u = User.find("smerity")
+    if not User.find("smerity"):
+        u = User.create("smerity", "smurdy", None, "Stephen", "Merity", "smerity@smerity.com", None, "M", 18)
+    u = User.find("smerity")
