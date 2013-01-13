@@ -1,0 +1,63 @@
+How to work the database:
+
+It's pretty simple. There are basic functions for the two different classes: User and Photo
+The variables within class User are:
+    username
+    password
+    profilepicurl (optional)
+    firstname
+    lastname
+    email
+    country
+    sex
+    age
+    
+The variables within class Photo are:
+    id
+    latitude
+    longitude
+    description
+    uploader
+    uploaddate
+    caption
+    artist
+    url
+    
+The functions within User are (other than __init__):
+    create
+    getpassword(self)
+    getprofilepicurl(self)
+    getfirstname
+    getlastname
+    getcountry
+    getsex
+    getemail
+    setpassword
+    setemail
+    setcountry
+    
+The functions within Photo are (other than __init__):
+    create
+    setprofilepicurl
+    getallprofilepicurl
+    getlocation
+    getallphotos
+    getpics (not available for use yet)
+    
+    
+Example uses:
+    user1 = User.create("username", "password", etc...) 
+    user1.getpassword()
+        (it will return 'password')
+    user1.setpassword("12345")
+        (it will replace the old password with '12345')
+    user1.getpassword()
+        (will now return '12345')
+    # there are things that once set initially when the object is created cannot be changed (username, sex, age/birthday)
+        
+    photo1 = Photo.create("id", "latitude", "longitude", etc...)
+    photo1.setprofilepicurl()
+        (changes the profile picture url. don't know how we are implementing photos)
+    photo1.getallphotos()
+        (literally gets all photos)
+    photo1.getpics(criteria, order, limit)
