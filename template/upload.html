@@ -1,8 +1,5 @@
             {% include template/header.html %}
-                    <form action="/">
-                        <input type="submit" value="Home"></input>
-                    </form>
-                        </br>
+            {% include template/navigation.html %}
                     <form id="upload" method="post" enctype="multipart/form-data">
                         <input type="file" name="upload_image"></br>
                         <span class="form-text"> Tags (separated by spaces, cases are irrelevant): </span> <input type="text" name="tags">  </input><br>
