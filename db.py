@@ -3,67 +3,52 @@ conn = sqlite3.connect("database.db")
 curs = conn.cursor()
 
 class User():
-    def __init__(self, username):
+    def __init__(self, username, password, profilepicurl, firstname, lastname, email, country, sex, age):
         self.username = username
-        self.password = None
-        self.profilepicurl = None
-        self.firstname = None
-        self.lastname = None
-        self.email = None
-        self.country = None
-        self.sex = None
-        self.age = 0
+        self.password = password
+        self.profilepicurl = profilepicurl
+        self.firstname = firstname
+        self.lastname = lastname
+        self.email = email
+        self.country = country
+        self.sex = sex
+        self.age = age
         
     @staticmethod        
-    def create(username, password, firstname, lastname, email, country, sex, age):
-        curs.execute("INSERT INTO users VALUES (?,?,' ',?,?,?,?,?,?)", (username, password, firstname, lastname, email, country, sex, age))
+    def create(username, password, profilepicurl, firstname, lastname, email, country, sex, age):
+        curs.execute("INSERT INTO users VALUES (?,?,?,?,?,?,?,?,?)", (username, password, profilepicurl, firstname, lastname, email, country, sex, age))
         conn.commit()
-        return User(username)
+        return User(username, password, profilepicurl, firstname, lastname, email, country, sex, age)
 
     @staticmethod
     def find(username):
-        curs.execute("SELECT * FROM users WHERE username = ?", (username))
+        curs.execute("SELECT * FROM users WHERE username = ?", (username,))
         result =  curs.fetchone()
-        if result: 
-            username, password, profilepicurl, firstname, lastname, email, country, sex, age = result
-            return User(username, password, profilepicurl, firstname, lastname, email, country, sex, age)
+        if result:
+            username, password, firstname, profilePic, lastname, email, country, sex, age = result
+            return User(username, password, profilePic, firstname, lastname, email, country, sex, age)
         else:
             return None
     
     def getpassword(self):
-        #print(self.username)
-        curs.execute("SELECT password FROM users WHERE username = ?", (self.username,))
-        self.password = curs.fetchone()[0]
         return self.password
     
     def getprofilepicurl(self):
-        curs.execute("SELECT profilepicurl FROM users WHERE username = ?", (self.username,))
-        self.profilepicurl = curs.fetchone()[0]
         return self.profilepicurl
 
     def getfirstname(self):
-        curs.execute("SELECT firstname FROM users WHERE username = ?", (self.username,))
-        self.firstname = curs.fetchone()[0]
         return self.firstname
 
     def getlastname(self):
-        curs.execute("SELECT lastname FROM users WHERE username = ?", (self.username,))
-        self.lastname = curs.fetchone()[0]
         return self.lastname
     
     def getcountry(self):
-        curs.execute("SELECT country FROM users WHERE username = ?", (self.username,))
-        self.country = curs.fetchone()[0]
         return self.country
 
     def getsex(self):
-        curs.execute("SELECT sex FROM users WHERE username = ?", (self.username,))
-        self.sex = curs.fetchone()[0]
         return self.sex
 
     def getemail(self):
-        curs.execute("SELECT email FROM users WHERE username = ?", (self.username,))
-        self.email = curs.fetchone()[0]
         return self.email
 
     def setpassword(self, password):
@@ -92,75 +77,91 @@ class User():
         return
 
     def listfriends(self):
-        curs.execute("SELECT friend FROM friends WHERE username = ?", (self.username))
+        curs.execute("SELECT friend FROM friends WHERE username = ?", (self.username,))
         self.friend = curs.fetchall()
         return self.friend
 
     def ifuserexists(self):
-        result = curs.execute("SELECT COUNT(*) FROM users WHERE username = ?", (self.username)).fetchone()[0]
+        result = curs.execute("SELECT COUNT(*) FROM users WHERE username = ?", (self.username,)).fetchone()[0]
         if result == "0":
             return False
         else:
             return True
 
     def firstnamesearch(self, firstname):
-        result = curs.execute("SELECT * FROM users WHERE firstname = ?", (firstname)).fetchall()
+        result = curs.execute("SELECT * FROM users WHERE firstname = ?", (firstname,)).fetchall()
         return result
 
     def lastnamesearch(self, lastname):
-        result = curs.execute("SELECT * FROM users WHERE lastname = ?", (lastname)).fetchall()
+        result = curs.execute("SELECT * FROM users WHERE lastname = ?", (lastname,)).fetchall()
         return result
 
     def lastnamesearch(self, lastname):
-        result = curs.execute("SELECT * FROM users WHERE lastname = ?", (lastname)).fetchall()
+        result = curs.execute("SELECT * FROM users WHERE lastname = ?", (lastname,)).fetchall()
         return result
 
     def locationsearch(self, country):
-        result = curs.execute("SELECT * FROM users WHERE country = ?", (country)).fetchall()
+        result = curs.execute("SELECT * FROM users WHERE country = ?", (country,)).fetchall()
         return result
 
+    def __repr__(self):
+        return "<User: {}>".format(self.username)
+
+    def __str__(self):
+        return self.__repr__()
+
 class Photo():
-    def __init__(self, id, location, description, uploader, uploaddate, caption, artist, url):
+    def __init__(self, id, latitude, longitude, description, uploader, uploaddate, caption, artist, url):
         self.id = id
-        self.location = None
-        self.description = None
-        self.uploader = None
-        self.uploaddate = None
-        self.caption = None
-        self.artist = None
-        self.url = None
-        self.allpics = None
+        self.latitude = latitude
+        self.longitude = longitude
+        self.description = description
+        self.uploader = uploader
+        self.uploaddate = uploaddate
+        self.caption = caption
+        self.artist = artist
+        self.url = url
 
     @staticmethod
-    def create(uploader, uploaddate, caption, artist, url, latitude=None, longitude=None, description=None):
-        curs.execute("INSERT INTO photos VALUES (?,?,?,?,?,?,?,?)", (latitude, longitude, description, uploader, uploaddate, caption, artist, url))
+    def create(uploader, caption, url, latitude=None, longitude=None, description=None, artist=None):
+        curs.execute("INSERT INTO photos (latitude, longitude, description, uploader, uploaddate, caption, artist, url) VALUES (?,?,?,?,datetime('now'),?,?,?)",
+                     (latitude, longitude, description, uploader, caption, artist, url))
         conn.commit()
-        return
+        curs.execute("SELECT id FROM photos WHERE id == (SELECT max(id) FROM photos)")
+        id = curs.fetchone()[0]
+        return Photo.find(id)
+
+    @staticmethod
+    def find(id):
+        curs.execute("SELECT * FROM photos WHERE id = ?", (id,))
+        id, latitude, longitude, description, uploader, uploaddate, caption, artist, url = curs.fetchone()
+        return Photo(id, latitude, longitude, description, uploader, uploaddate, caption, artist, url)
     
     def setprofilepicurl(self, profilepicurl):
         curs.execute("UPDATE users SET profilepicurl = ? WHERE id = ?", (profilepicurl, self.id))
         conn.commit()
-        return
-    ## Do we need this?
-    def getallprofilepicurl(self):
-        curs.execute("SELECT profilepicurl FROM photos WHERE id = ?", (self.id))
-        self.profilepicurl = curs.fetchall()
-        return self.profilepicurl
 
     def getlocation(self):
-        curs.execute("SELECT latitude, longitude FROM photos WHERE id = ?", (self.id))
-        self.location = curs.fetchone()
         return self.location
 
     @staticmethod
     def getallpics():
-        piclist = []
         curs.execute("SELECT * FROM photos")
+
+        piclist = []
         for i in curs.fetchall():
+            print(i)
             id, lat, long, description, uploader, uploaddate, caption, artist, url = i
-            currentpicture = Photo(id, (lat, long), description, uploader, uploaddate, caption, artist, url)
+            currentpicture = Photo(id, lat, long, description, uploader, uploaddate, caption, artist, url)
             piclist.append(currentpicture)
+            
         return piclist
+
+    def __repr__(self):
+        return "<Photo: {} ({})>".format(self.caption, self.uploader)
+
+    def __str__(self):
+        return self.__repr__()
 
 class Tag():
     def __init__(self, tagid):
@@ -175,7 +176,7 @@ class Tag():
         return
 
     def gettagid(self, tagid):
-        curs.execute("SELECT tagid FROM tags WHERE tagid = ?", (self.tagid))
+        curs.execute("SELECT tagid FROM tags WHERE tagid = ?", (self.tagid,))
         self.tagid = curs.fetchone()[0]
         
     def getalltagstring(self):
@@ -184,8 +185,8 @@ class Tag():
     def getallphoto(self, tagstring):
         pass
     ## RETURN LIST
-##    def getpics(self, criteria, order, limit):
-##        curs.execute("SELECT url FROM photos WHERE ? ORDER BY ? DESC LIMIT ?", expression, order, limit)
+##    def getpicsurl(self, criteria, order, limit):
+##        curs.execute("SELECT url FROM photos WHERE ? ORDER BY ? DESC LIMIT ?", criteria, order, limit)
 ##        self.url = curs.fetchall()
 ##        return self.url
 ##
@@ -196,3 +197,11 @@ class Tag():
 ##print(testuser.getpassword())
 ##testuser.setpassword("23456")
 ##print(testuser.getpassword())
+
+if __name__ == "__main__":
+    testuser = User.find("Jess_User")
+    print(testuser)
+    p = Photo.create("Smerity", "lolcats", "0.jpg")
+    if not User.find("smerity"):
+        u = User.create("smerity", "smurdy", None, "Stephen", "Merity", "smerity@smerity.com", None, "M", 18)
+    u = User.find("smerity")

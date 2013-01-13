@@ -4,7 +4,6 @@ import sqlite3
 from template_language import *
 from db import *
 import os
-from functions import *
 import cgitb
 
 error_dict = {
@@ -13,6 +12,8 @@ error_dict = {
     '3':'',
     '4':'Incorrect Password'
     }
+
+context = {'cookie': '138457928345'}
 
 cgitb.enable()
 
@@ -53,7 +54,6 @@ def login(response):
 
 
 def index(response):
-    context = make_context(response)
     context['message'] = None
     context['cookie'] = 'lol'
     error = response.get_field('error')
@@ -65,23 +65,24 @@ def index(response):
 
 
 def upload(response):
-    response.write(create("""
-{% include template/header.html %}
-<p style='font-color:black;'>
-            <a href = "/"> Home <a>
-            <form id="upload" method="post" enctype="multipart/form-data">
-                <input type="file" name="upload_image"></br>
-                <input type="text" name="tags"> Tags (seperated by spaces, cases are irrelevant) </input><br>
-                <input type="text" name="description" style="width:400px; height:75px;"> Description</input><BR>
-                <input type="submit" name="Submit" value="Upload Image"></br>
-                <a href = "/piclist"> piclist <a>
-            </form>
-            </p>
-        </body>
-    <html>
-""", {}))
+##    response.write("""
+##<!doctype html>
+##    <html>
+##        <head></head>
+##        <body>
+##            <a href = "/"> Home <a>
+##            <form id="upload" method="post" enctype="multipart/form-data">
+##                <input type="file" name="upload_image"></br>
+##                <input type="text" name="tags"> Tags (seperated by spaces, cases are irrelevant) </input><br>
+##                <input type="text" name="description" style="width:400px; height:75px;"> Description</input><BR>
+##                <input type="submit" name="Submit" value="Upload Image"></br>
+##                <a href = "/piclist"> piclist <a>
+##            </form>
+##        </body>
+##    <html>
+##""")
 
-    # response.write(render('template/upload.html', context))
+    response.write(render('template/upload.html', context))
 
     # create new fields and fill them
     # with the fields of the response.get_file tuple
@@ -97,7 +98,8 @@ def upload(response):
     if filename:
         #open and create a new file within
         #static folder (static is safe)
-        #we are writing raw bytes to file (that's how the site will recieve them)      
+        #we are writing raw bytes to file (that's how the site will recieve them)
+        
         with open("static/uploads/images/"+str(Photo.getnextid()[0][0])+".jpg" , 'wb') as f:
 
             #write the raw data we got from the tuple to the file
@@ -107,14 +109,11 @@ def upload(response):
         Photo.create("authorname","0",filename,"banksy", "static/uploads/images/"+str(Photo.getnextid()[0][0])+".jpg","1","1",description)
                      
         with open("static/uploads/tags/"+ filename.replace('.', '')+".txt", "w") as t:
-
             t.write(tags)
 
 def photostream(response):
-    photos = Photo(None).getallpics()
-    print(photos)
-    context = make_context()
-    context['photos'] = photos
+    photos = Photo.getallpics()
+    context = {'photos': photos}
     response.write(render('template/stream.html', context))
         
 def loggedout(response): #Loggedout page, delete cookies here
@@ -122,7 +121,7 @@ def loggedout(response): #Loggedout page, delete cookies here
     response.redirect('/home')
 
 def friends (response):
-    context = make_context(response)
+    context = {}
     response.write(render('template/friends.html',context))
 
 def template_sample(response):
@@ -130,9 +129,8 @@ def template_sample(response):
 #    context = { 'name':'Smerity', 'friends':['Ruby','Casper','Ted','Asem'], 'logged_in': True}
     context = { 'name':'Smerity', 'friends':[], 'logged_in': True}
     response.write(render('template/workshop_example.html',context))
-
 def profile(response):
-    context = make_context(response)
+    context = {}
     response.write(render('template/profile.html', context))
      
 server = Server()

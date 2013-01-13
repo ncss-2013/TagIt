@@ -48,11 +48,8 @@ CREATE TABLE photos (
  CREATE TABLE tags (
     tagid INTEGER PRIMARY KEY AUTOINCREMENT,
     tagstring TEXT,
-    id INTEGER,
+    id INTEGER
 ); 
- 
- 
- 
  
  /* CREATE TABLE comments (
     photoid INT,
