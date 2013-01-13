@@ -122,7 +122,7 @@ def loggedout(response): #Loggedout page, delete cookies here
     response.redirect('/home')
 
 def friends (response):
-    context = make_context()
+    context = make_context(response)
     response.write(render('template/friends.html',context))
 
 def template_sample(response):
