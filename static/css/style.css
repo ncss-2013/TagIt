@@ -65,8 +65,8 @@ ol{
 }
 
 .wrapper2{
-    margin-left: 50px;
-    margin-right:50px;
+    margin-left: 5%;
+    margin-right:5%;
 }
 
 .landing-container{
@@ -338,7 +338,7 @@ a {
  }
  
  #upload {
-    /*background-image: url(/static/images/spraycan_background.png); */
+    /* background-image: url(/static/images/spraycan_background.png); */
     width: 30%;
     float: left;
     border: 1px solid #ccc;
@@ -347,8 +347,13 @@ a {
     background-color: white;
     overflow: hidden;
     margin: 10px;
-    padding: 10px;
 }
+#upload h1{
+    background-color: #4f4859;
+    color:white;
+    padding:10px;
+}
+    
 
 #upload label {
     display: block;
