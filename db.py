@@ -15,10 +15,10 @@ class User():
         self.age = age
         
     @staticmethod        
-    def create(username, password, profilepicurl, firstname, lastname, email, country, sex, age):
-        curs.execute("INSERT INTO users VALUES (?,?,?,?,?,?,?,?,?)", (username, password, profilepicurl, firstname, lastname, email, country, sex, age))
+    def create(username, password, firstname, lastname, email, country, sex, age):
+        curs.execute("INSERT INTO users VALUES (?,?,NULL,?,?,?,?,?,?)", (username, password, firstname, lastname, email, country, sex, age))
         conn.commit()
-        return User(username, password, profilepicurl, firstname, lastname, email, country, sex, age)
+        return User(username, password, firstname, lastname, email, country, sex, age)
 
     @staticmethod
     def find(username):

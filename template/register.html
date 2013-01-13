@@ -1,6 +1,7 @@
-<form action='/register' method='POST'>
+
     <div class="padding">
         <div id="register-box" style="display:none">
+            <form action='/createlogin' method='POST'>
             <input type="text" class="input-box pull-left" name="first_name" placeholder="First Name"></input>
             <input type="text" class="input-box pull-right" name="last_name" placeholder="Last Name"></input></br>
             <input type="text" class="full-input-box" name="email" placeholder="Email"></input></br>
@@ -262,7 +263,11 @@
             </select></br>
             <input type="radio" class="radio-button" name="sex" style="color:white"></input><span class="sex-text">Male</span>
             <input type="radio" class="radio-button" name="sex" style="color:white"></input><span class="sex-text">Female</span>
-        </div>
-        <input class="register-btn full-input-box" type="submit" value="Register" onClick="if(!$('#register-box').is(':visible')){$('#register-box').slideDown(); event.preventDefault();}">
+            </div>
+          <input class="register-btn full-input-box" type="submit" value="Register" onClick="if(!$('#register-box').is(':visible')){$('#register-box').slideDown(); event.preventDefault();}">
+        
+        </form> 
+       
+        
+        
     </div>
-</form> 

@@ -20,15 +20,18 @@ cgitb.enable()
 
 
 def createlogin(response):
+    print("gj")
     if response.get_secure_cookie('tag_it'):#check if we have the tag_it cookie (are we logged in?), so the user can't log in.
         response.redirect('/?error=1') #in the future make it so it gives you the option to log out(delete cookies), and list who you're logged in as - allowing the user to create an account
     else:
+        first_name = response.get_field('first_name')
+        last_name = response.get_field('last_name')
+        email = response.get_field('email')
         username = response.get_field('username')
         password = response.get_field('password')
         password_check = response.get_field('password_check')
-        email = response.get_field('email')
-        first_name = response.get_field('first_name')
-        last_name = response.get_field('last_name')
+        print(first_name, last_name, email, username, password, password_check)
+                         
         
         if(password_check == password and password_check is not None and username is not None):     #check if the two password fields are the same
             username_user = User.create(username, password, first_name, last_name, email, None, None, None) 
