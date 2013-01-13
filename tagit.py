@@ -87,13 +87,13 @@ def upload(response):
         #static folder (static is safe)
         #we are writing raw bytes to file (that's how the site will recieve them)
         context = make_context(response)
-        photo = Photo.create(context['username'],filename,description=description)
+        photo = Photo.create(uploader=context['username'],url=filename,caption=description,description=description)
         with open("static/uploads/images/"+str(photo.id)+".jpg" , 'wb') as f:
             #write the raw data we got from the tuple to the file
             f.write(data)
          
-        with open("static/uploads/tags/"+ filename.replace('.', '')+".txt", "w") as t:
-            t.write(tags)
+        #with open("static/uploads/tags/"+ filename.replace('.', '')+".txt", "w") as t:
+        #    t.write(tags)
             
     response.redirect('/stream')
 
@@ -125,8 +125,11 @@ def profile(response, user):
     context = make_context(response)
     context['user'] = User.find(user)
     if context['user']:
-        context['is_friend'] = User.find(context["username"]).isfriends(user)
         photos = Photo.getpicsbyusername(user)
+        import hashlib
+        context['is_friend'] = User(context['username']).isfriends(user)
+        #context["user_image"] = "http://www.gravatar.com/avatar/" + hashlib.md5("smerity@smerity.com".encode("utf-8")).hexdigest() + "?s=200"
+        context["user_image"] = "http://www.gravatar.com/avatar/" + hashlib.md5(context['user'].email.encode("utf-8")).hexdigest() + "?s=200&d=retro"
         context['photos'] = photos
         response.write(render('template/profile.html', context))
 
@@ -149,9 +152,15 @@ def friends(response):
 def delfriend(response, other_user):
     context = make_context(response)
     if context [ 'is_logged_in' ] == True:
-        if User(context["username"]).isfriends(other_user):
+        listfriends = User(context["username"]).listfriends()\
+
+        friend_names = []
+        for friend in listfriends:
+            friend_names.append(friend.username)
+
+        if other_user in friend_names:
             User(context["username"]).delfriend(other_user)
-    response.redirect('/profile/'+other_user)
+            response.redirect('/profile/'+other_user)
      
 server = Server()
 server.register("/", index)

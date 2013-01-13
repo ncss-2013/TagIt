@@ -1,6 +1,8 @@
 {% include template/header.html %}
 {% include template/navigation.html %}
-    <div class="wrapper">
+    <div class="wrapper2">
+        <h2>Following</h2>
+        <div id="following">
         {% if len(friends) %}
             <ul>
             {% for friend in friends %}
@@ -13,6 +15,7 @@
             <p>Check out popular users in your photo feed to get some inspiration!</p>
             </div>
         {% end if %}
+        </div>
     </div>
 {% include template/footer.html %}
 </html>

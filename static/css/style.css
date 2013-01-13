@@ -144,11 +144,6 @@ a {
     color: #FFFFFF;
 }
 
-div.wrapper ul li a, #photos a {
-    color: black;
-    text-decoration: none;
-}
-
 .login{
     margin-top:4%;
 }
@@ -287,6 +282,7 @@ div.wrapper ul li a, #photos a {
  
 .feed-centre{
     position: absolute;
+    padding-bottom: 80px;
     right: 0;
     top: 0;
 }
@@ -333,10 +329,18 @@ div.wrapper ul li a, #photos a {
 }
 
 .border{
-    border: 3px;
+    border: 1px;
     border-style: solid;
     border-color: #455865;
     -webkit-border-radius: 3px;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+}
+
+.profile_pic {
+    box-shadow: 1px 1px 7px rgba(0,0,0,0.3);
+    border-radius: 5px;
+    border: 1px solid #bbb;
+    margin: 20px;
 }
 
 /**** end profile styles ****/
@@ -345,6 +349,8 @@ div.wrapper ul li a, #photos a {
     font-weight: bold;
     display: block;
     padding-bottom: 5px;
+    color: black;
+    text-decoration: none;
 }
 
 /**** end photo stream styles ****/
@@ -383,4 +389,15 @@ div.wrapper ul li a, #photos a {
 #upload textarea {
     height: 60px;
     margin-bottom: 10px;
+}
+
+div#following ul {
+    list-style-type: none;
+}
+div#following ul a {
+    color: black;
+    text-decoration: none;
+}
+div#following ul li {
+    margin: 10px;
 }

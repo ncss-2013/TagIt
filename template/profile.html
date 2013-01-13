@@ -4,26 +4,28 @@
     <div class="wrapper2">
         <div class="pull-left padding third-span relly">
             <div class="pics">
-                <img class="" src="static/images/box.png" width="180" height="250"> 
+                <img class="profile_pic" src="{{ user_image }}" width="200"> 
             </div>
-             <div class="fourth-span border padding user ">
+             <div class="border padding user ">
                 <h2 class="name">{{ user.username }}</h2>
             </div>
             {% if user.username != username %}
-            {% if is_friend %}
-                <a class="btn-add" type="button" href="/delfriend/{{ user.username }}">- Unfollow</a>
-            {% else %}
+                {% if is_friend %}
+                    <a class="btn-add" type="button" href="/delfriend/{{ user.username }}">- Unfollow</a>
+                {% else %}
                 <a class="btn-add" type="button" href="/addfriend/{{ user.username }}">+ Follow</a>
-            {% end if %}
-            {% include template/upload.html %}
+                {% end if %}
+            {% else %}
+                {% include template/upload.html %}
             {% end if %}
         </div>
         
         <div class="pull-left fourth-span">
             <div class="half-span">
-                <h2 id="info">Personal Info & Crap</h2>
+                <h2 id="info">Personal Info</h2>
                 <form class="alternating-rows">
                         <p>Name: {{ user.firstname }} {{ user.lastname }}</p>
+                        <p>Total <i>TagIt</i> Photos: {{ len(photos) }}</p>
                         {% if user.age %}
                         <p>Age: {{ user.age }}</p>
                         {% end if %}
@@ -40,14 +42,15 @@
             </div>
         </div>
         
-    </div>
+
     <div class="border bots">
         <div>
             {% for photo in photos %}
-                <a href="{{ photo.url }}" rel="lightbox" title="{{ photo.caption }}">
-                    <img src="{{ photo.url }}" width="200">
+                <a href="/static/uploads/images/{{ photo.id }}.jpg" rel="lightbox" title="{{ photo.caption }}">
+                    <img src="/static/uploads/images/{{ photo.id }}.jpg" width="200">
                 </a>
             {% end for %}
         </div>
     </div>
+        </div>
     {% include template/footer.html %}   

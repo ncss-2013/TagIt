@@ -14,7 +14,7 @@ class User():
         self.sex = sex
         self.age = age
         
-    @staticmethod        
+    @staticmethod
     def create(username, password, profilepicurl, firstname, lastname, email, country, sex, age):
         curs.execute("INSERT INTO users VALUES (?,?,?,?,?,?,?,?,?)", (username, password, profilepicurl, firstname, lastname, email, country, sex, age))
         conn.commit()
