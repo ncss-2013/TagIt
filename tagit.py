@@ -58,10 +58,10 @@ def login(response):
             response.redirect('/?error=4')
 
 
-def index(response):
+def index(response):   
     context = make_context(response)
     context['message'] = None
-    
+
     error = response.get_field('error')
 
     if error and error in error_dict:

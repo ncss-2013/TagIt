@@ -20,7 +20,11 @@ def make_context(response):
     #making user context
     if response.get_cookie('tag_it'):
         context['is_logged_in'] = True
-        context['username'] = response.get_secure_cookie('tag_it').decode("utf-8")
+        try:
+            context['username'] = response.get_secure_cookie('tag_it').decode("utf-8")
+        except:
+            response.clear_cookie('tag_it')
+            response.redirect('/')
     else:
         context['is_logged_in'] = False
     return context
