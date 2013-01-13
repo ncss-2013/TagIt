@@ -72,8 +72,12 @@ class LetNode(Node):
         context[self.var] = eval(self.expr)
 
 def parse(content, node_list = None):
-    content = list(content)
     if not node_list: node_list = []
+    text_content = ''.join(content)
+    if '{{' not in text_content and '{%' not in text_content:
+      node_list.append(TextNode(text_content))
+      return node_list
+    content = list(content)
     while content:
         if ''.join(content).startswith('{{'): # PythonNode
             for _ in range(2): content.pop(0)
@@ -158,9 +162,14 @@ def parse(content, node_list = None):
             node_list.append(node)
     return node_list
 
+PARSED_TEMPLATES = {}
+    
 # Helper functions -----------
 def create(content, context):
-    raw = parse(content)
+    if content in PARSED_TEMPLATES:
+     raw = PARSED_TEMPLATES[content]
+    else:
+     raw = PARSED_TEMPLATES[content] = parse(content)
     output = ''
     for part in raw: output += str(part._render(context))
     return output
