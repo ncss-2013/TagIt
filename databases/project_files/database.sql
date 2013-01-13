@@ -23,7 +23,7 @@ CREATE TABLE photos (
     longitude FLOAT,
     description TEXT,
     uploader TEXT,
-    uploaddate DATE,
+    uploaddate DATETIME,
     caption TEXT,
     artist TEXT,
     url TEXT,
@@ -32,7 +32,7 @@ CREATE TABLE photos (
  
  CREATE TABLE comments (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    uploaddate DATE,
+    uploaddate DATETIME,
     comstring TEXT,
     commenter TEXT,
     photoid INTEGER,
@@ -75,8 +75,8 @@ INSERT INTO users VALUES ("Caspar_User", "Caspar_password", "test.com", "Caspar"
 INSERT INTO users VALUES ("Jess_User", "Jess_password", "test.com", "Jess", "D'Ali", "dali@email.com", "France", "F", 18);
 INSERT INTO users VALUES ("Alex_User", "Alex_password", "test.com", "Alex", "Harper", "alex@email.com", "Germany", "M", 24);
 
-INSERT INTO photos VALUES (1,-33.1,151.2,"blah","Caspar_User",date('now'),"blah_short","Tim", "tim.com");
-INSERT INTO photos VALUES (2,33,130.5,"this is a cool photo", "Jess_USer",date('now'),"sdfakasdf","Smezza", "smezza.com");
+INSERT INTO photos VALUES (1,-33.1,151.2,"blah","Caspar_User",datetime('now'),"blah_short","Tim", "tim.com");
+INSERT INTO photos VALUES (2,33,130.5,"this is a cool photo", "Jess_USer",datetime('now'),"sdfakasdf","Smezza", "smezza.com");
 
 
 

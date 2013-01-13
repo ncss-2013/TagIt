@@ -3,8 +3,8 @@ from tornado import Server
 import sqlite3
 from template_language import *
 
-
-f = open('index.html', 'r')
+context = {}
+f = open('template/index.html', 'rU')
 index_html = f.read()
 f.close()
 #make variables so that later when we create a better sign up form, we'll change it to use the variables from the database
@@ -46,7 +46,7 @@ def login(response):
     if response.get_secure_cookie('tag_it'):
         response.write('You\'re already logged in')
     else:
-        response.write()
+        response.write(render(index_html, context))
         loginusername = response.get_field('username')
         loginpassword = response.get_field('password')
 
