@@ -41,6 +41,7 @@ def createlogin(response):
 def index(response):
     context = {'message': None}
     error = response.get_field('error')
+##    context["user"] = response.get_secure_cookie('tag_it').decode("utf-8")
     
     if error and error in error_dict:
         context['message'] = error_dict[error]

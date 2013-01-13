@@ -100,15 +100,16 @@ class Photo():
     def getlocation(self):
         curs.execute("SELECT longitude FROM photos WHERE id = ?", self.id)
 
-    def getallphotos(self):
+    def get_all_user_photos(self):
         curs.execute("SELECT url FROM photos WHERE id = ?", self.id)
         self.url = curs.fetch()
         return self.url
 
-    def getallpics(self):
+    @classmethod
+    def get_all(self):
         curs.execute("SELECT * url FROM photos")
-        self.allpics = curs.fetchall()
-        return self.allpics
+        allpics = curs.fetchall()
+        return allpics
     
     ## RETURN LIST
 ##    def getpics(self, criteria, order, limit):
