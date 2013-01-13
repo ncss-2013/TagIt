@@ -15,7 +15,7 @@ error_dict = {
 ##index_html = f.read()
 ##f.close()
 #make variables so that later when we create a better sign up form, we'll change it to use the variables from the database
-firstname,lastname, email, country, sex, age = "", "", "", "", "", 0
+#firstname,lastname, email, country, sex, age = "", "", "", "", "", 0
 
 def createlogin(response):
     if response.get_secure_cookie('tag_it'):#check if we have the tag_it cookie (are we logged in?), so the user can't log in.

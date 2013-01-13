@@ -1,133 +1,68 @@
-#
+#import yoloswag
 from tornado import Server
-import os
-
 import sqlite3
-
 from template_language import *
-
+from db import *
+import os
 import cgitb
-context = {} # dictionary for the variables, should be taken from database and inserted into this dictionary
+
+error_dict = {
+    '1':'You\'re already logged in!',
+    '2':'No passwords have been entered',
+    '3':'',
+    '4':'Incorrect Password'
+    }
+
 cgitb.enable()
 
-import db
 
-#f = open('index.html', 'r')
-#index_html = f.read()
-#f.close()
-#make variables so that later when we create a better sign up form, we'll change it to use the variables from the database
 firstname,lastname, email, country, sex, age = "", "", "", "", "", 0
 
 def createlogin(response):
-    index_html = """
-<!doctype html>
-    <html>
-        <head></head>
-        <body>
-            <form id="login">
-                <input type="text" name="username" placeholder="Username"></input></br>
-                <input type="password" name="password" placeholder="Password"></input></br>
-                <input type="password" name="password_check" placeholder="Retype Password"></input></br>
-                <input type="submit" name="submit" value="Submit"></br>
-            </form>
-        </body>
-    <html>
-"""
-    #response.write(index_html)             #print the html for the page
-    conn = sqlite3.connect("database.db")   
-    cursor = conn.cursor()
     if response.get_secure_cookie('tag_it'):#check if we have the tag_it cookie (are we logged in?), so the user can't log in.
-        response.write('You\'re already logged in, so you cannot create a new account - YOU HAVE ONE!') #in the future make it so it gives you the option to log out(delete cookies), and list who you're logged in as - allowing the user to create an account
+        response.redirect('/?error=1') #in the future make it so it gives you the option to log out(delete cookies), and list who you're logged in as - allowing the user to create an account
     else:
-        response.write(index_html)          #print the submit form only if there is no log in cookie
         username = response.get_field('username')
         password = response.get_field('password')
         password_check = response.get_field('password_check')
+        email = response.get_field('email')
+        first_name = response.get_field('first_name')
+        last_name = response.get_field('last_name')
         
         if(password_check == password and password_check is not None and username is not None):     #check if the two password fields are the same
-            cursor.execute("INSERT INTO users VALUES ('" + str(username) + "', '" + str(password) + "', '" + str(firstname) + "', '" + str(lastname) + "', '" + str(email) + "', '" + str(country) + "', '" + str(sex) + "', " + str(age) +");")
-            conn.commit()
-            cursor.close()
-            conn.close()
-            response.set_secure_cookie('tag_it', username)  #make the user log in after sign up
-            response.redirect('/upload')
+            username_user = User.create(username, password, first_name, last_name, email, None, None, None) 
+            response.set_secure_cookie('tag_it', username)  #make the user log in after sign-up
+            response.redirect('/')
         elif(password_check is None and password is None):
-            response.write("Please enter a username/password")
+            response.redirect('/?error=2')
         else:
-            response.write("Passwords did not match, please try again")
-
+            response.redirect('/?error=3')
+      
 
 def login(response):
-    conn = sqlite3.connect("database.db")
-    cursor = conn.cursor()
+
     if response.get_secure_cookie('tag_it'):
-        response.write('You\'re already logged in')
+        response.redirect('/?error=1')
     else:
-        response.write('''
-        <!doctype html>
-        <html>
-            <head></head>
-            <body>
-                <form id="login" method='POST'>
-                    <input type="text" name="username"> Username </input>
-                    <input type="password" name="password"> Password </input>
-                    <input type="submit" name="submit" value="Submit">
-                </form>
-            </body>
-        <html>''')
         loginusername = response.get_field('username')
         loginpassword = response.get_field('password')
 
-        cursor.execute("SELECT username, password FROM users WHERE username = '" + str(loginusername) + "'")
-        fetched_cursor = cursor.fetchone()
-        if (fetched_cursor is not None):
-            (databaseusername,databasepassword) = fetched_cursor
-            if loginusername == databaseusername:
-                if loginpassword == databasepassword:
-                    response.set_secure_cookie('tag_it', loginusername)
-                    response.write('Well done, you are logged in as: ' + loginusername + ':' + loginpassword)
-                else:
-                    response.write('Incorrect Password. Try again by pressing back on your browser')
-            elif loginusername != None:
-                response.write('Incorrect Password. Try again by pressing back on your browser')
+        databasepassword = User.find(loginusername).getpassword()
+        if loginpassword == databasepassword:
+            response.set_secure_cookie('tag_it', loginusername)
+            response.redirect('/')
         else:
-            response.write('Incorrect username/password combination.')
-        cursor.close()
-        conn.close()
-        
+            response.redirect('/?error=4')
 
 
+def index(response):
+    context = {'message': None}
+    error = response.get_field('error')
 
-def home(response):
-    if response.get_secure_cookie('tag_it'):
-        #Cookie exists, display the logout button
-        username_from_cookie = response.get_secure_cookie('tag_it')
-        response.write("Hello ")
-        response.write(username_from_cookie)
-        response.write('''
-        <!doctype html>
-        <html>
-            <head></head>
-            <title>Tag It</title>
-            <body>
-            <br />
-            <button type = "button"
-                    name = "logout"
-                    value = "Logout"
-                    onclick = "window.location.href='loggedout'">
-                    Logout
-                    </button>
-                    <p>
-                            current pages avaliable are <a href = "upload" >/upload</a>, <a href = "/stream" >the photostream</a> and <a href = "/piclist"> piclist <a>
-                    </p>
-            </body>
-        </html>''')
-
-    else:
-        #Cookie does not exist, display the login page
-        #Send the form to the '/login' page to process
-        output = create(''.join(open('template/index.html').readlines()), {})
-        response.write(output)
+    if error and error in error_dict:
+        context['message'] = error_dict[error]
+  
+    response.write(render('template/index.html', context))
 
 
 def upload(response):
@@ -248,7 +183,7 @@ def template_sample(response):
     response.write(render('template/workshop_example.html',context))
      
 server = Server()
-server.register("/", home)
+server.register("/", index)
 server.register("/upload", upload)
 server.register("/view/(.+)", view)
 server.register("/piclist", piclist)
