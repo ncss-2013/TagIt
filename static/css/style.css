@@ -64,6 +64,11 @@ ol{
     margin-right:20px;
 }
 
+.wrapper2{
+    margin-left: 50px;
+    margin-right:50px;
+}
+
 .landing-container{
     background-image:url('/static/images/mad_graff.jpg');
     background-size:100%;
@@ -156,6 +161,11 @@ a {
 .fourth-span{
     width:33%;
 }
+.fifth-span{
+    width:10%;
+}
+
+
 .one-span{
     width:70px;
 }
@@ -294,12 +304,17 @@ a {
 
 /**** profile styles ****/
 
+
 .put-shadow{
     box-shadow: 3px 3px 5px 6px #ccc;
 }
 
-.dp{
-    margin-top: 20px;
+.border{
+    border: 3px;
+    border-style: solid;
+    border-color: #455865;
+    -webkit-border-radius: 3px;
 }
+
 
 /**** end profile styles ****/

@@ -1,11 +1,22 @@
 {% include template/header.html %}
-    <div class="wrapper pull-left one-span">
-        <img class="dp put-shadow border" src="static/images/box.png" width="240" height="320"> 
-        <div class="three-span dp put-shadow pull-left">
-            <p>UserName</p>
-        </div>            
-        <div class="wrapper pull-right half-span">
-            <p>Info and crap</p>
+{% include template/navigation.html %}
+    <div class="wrapper2">
+        <div class="pull-left fourth-span">
+            <div class="one-span container">
+                <img class="border" src="static/images/box.png" width="70" height="70"> 
+            </div>  
+            <div class="fifth-span container padding">
+                Username
+            </div> 
+            <div class="container padding">
+                upload
+            </div>
+        </div>
+        
+        <div class="pull-left fourth-span">
+            <div class="border half-span">
+                <h3>Personal Info & Crap</h3>
+            </div>
         </div>
     </div>
-{% include template/footer.html %}   
+    {% include template/footer.html %}   

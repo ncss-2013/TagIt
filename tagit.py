@@ -132,7 +132,7 @@ def template_sample(response):
     response.write(render('template/workshop_example.html',context))
 
 def profile(response):
-    context = make_context()
+    context = make_context(response)
     response.write(render('template/profile.html', context))
      
 server = Server()
