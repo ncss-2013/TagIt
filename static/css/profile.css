@@ -1,0 +1,53 @@
+
+.wrapper2{
+    margin-left: 5%;
+    margin-right:5%;
+    margin-top: 10px;
+}
+
+.user{
+    display: inline-block;
+    position:absolute;
+    right:60px;
+    background-color: white;
+}
+.relly {
+    position:relative;
+}
+.name{
+    background-color:white;
+    color:black;
+}
+    
+.leffy{
+    padding:0px 20px;
+}
+
+ .btn-add{  
+  display: inline-block;
+  position:absolute;
+  top:100px;
+  right:60px;
+  font-family:Muli;
+  font-size: 18;
+  padding: 20px 59px;
+  text-align:center;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #8c99b4;
+  background-image: -webkit-linear-gradient(top, #6f85b3, #8c99b4);
+  border-radius: 7px;
+  border: 0;
+ }
+ 
+.btn-add:hover{
+   background-image: -webkit-linear-gradient(top, #5f75a3, #7c89a4);
+}
+.pics{
+    display:inline-block;
+}
+
+.wrapper2 #upload {
+    width: 90%;
+    display:inline-block;
+}

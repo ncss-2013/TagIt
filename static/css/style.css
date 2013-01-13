@@ -94,19 +94,7 @@ ol{
 .padding{
    padding:20px;
 }
-.user{
-    display: inline-block;
-    position:absolute;
-    right:60px;
-    background-color: white;
-}
-.relly {
-    position:relative;
-}
-.name{
-    background-color:white;
-    color:black;
-}
+
 .margin-right{
     margin-right:3px;
 }
@@ -117,9 +105,6 @@ ol{
     display:block-inline;
 }
     
-.leffy{
-    padding:0px 20px;
-}
 header{
     background-color:#455865;
     width: 100%;
@@ -287,30 +272,7 @@ a {
  .register-btn:hover{
    background-image: -webkit-linear-gradient(top, #06659a, #0e8dd7);
 }
- .btn-add{  
-  display: inline-block;
-  position:absolute;
-  top:100px;
-  right:60px;
-  font-family:Muli;
-  font-size: 18;
-  padding: 20px 59px;
-  text-align:center;
-  color: #ffffff;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #8c99b4;
-  background-image: -webkit-linear-gradient(top, #6f85b3, #8c99b4);
-  border-radius: 7px;
-  border: 0;
- }
  
-.btn-add:hover{
-   background-image: -webkit-linear-gradient(top, #5f75a3, #7c89a4);
-}
-.pics{
-    display:inline-block;
-}
-
 .feed-centre{
     position:relative;
     float:right;
@@ -384,10 +346,6 @@ a {
     background-color: white;
     overflow: hidden;
     margin: 20px;
-}
-.wrapper2 #upload {
-    width: 90%;
-    display:inline-block;
 }
 
 #upload h1{
