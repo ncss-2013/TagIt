@@ -39,8 +39,15 @@ ol{
     
 
 .wrapper{
-    margin-left: 120px;
-    margin-right:120px;
+    margin-left: 20px;
+    margin-right:20px;
+}
+
+.landing-container{
+    margin-top:20px;
+    width:100%;
+    height:45%;
+    
 }
 
 header{
@@ -68,11 +75,11 @@ a {
     color: #FFFFFF;
 }
 .logo{
-    margin-top:20px;
-    margin-left:100px;
+    margin-top:15px;
+    margin-left:0px;
     position:absolute;
     top:0;
-    height:80px;
+    height:90px;
 }
 
 .photooftheday{
@@ -91,11 +98,17 @@ a {
 
 .third-span{
     width:500px;
-   
+}
+.half-span{
+    width:435px;
+ }
+.fourth-span{
+    width:370px;
 }
 
 .container{
     box-shadow: 1px 5px 5px 1px #ccc;
+    margin-top:20px;
 }
 .container h1, 
 .container h2,
