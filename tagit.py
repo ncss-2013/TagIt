@@ -26,11 +26,16 @@ def createlogin(response):
         email = response.get_field('email')
         username = response.get_field('username')
         password = response.get_field('password')
+        country = response.get_field('country')
+        sex = response.get_field('sex')
+        if sex not in ["M", "F"]:
+            sex = None
+        age = response.get_field('age')
         password_check = response.get_field('password_check')
         print(first_name, last_name, email, username, password, password_check)                      
 
         if(password_check == password and password_check is not None and username is not None):     #check if the two password fields are the same
-            username_user = User.create(username, password, None, first_name, last_name, email, None, None, None) 
+            username_user = User.create(username, password, None, first_name, last_name, email, country=country, sex=sex, age=age) 
             response.set_secure_cookie('tag_it', username)  #make the user log in after sign-up
             response.redirect('/')
         elif(password_check is None and password is None):
@@ -129,7 +134,7 @@ def profile(response, user):
         import hashlib
         context['is_friend'] = User(context['username']).isfriends(user)
         #context["user_image"] = "http://www.gravatar.com/avatar/" + hashlib.md5("smerity@smerity.com".encode("utf-8")).hexdigest() + "?s=200"
-        context["user_image"] = "http://www.gravatar.com/avatar/" + hashlib.md5(context['user'].email.encode("utf-8")).hexdigest() + "?s=200&d=retro"
+        context["user_image"] = context['user'].get_picture() + "&s=200"
         context['photos'] = photos
         response.write(render('template/profile.html', context))
 

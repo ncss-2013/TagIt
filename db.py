@@ -92,7 +92,7 @@ class User():
         friends = curs.fetchall()
         self.friends = []
         for friend in friends:
-            self.friends.append(User(friend[0]))
+            self.friends.append(User.find(friend[0]))
         return self.friends
 
     def exists(self):
@@ -117,6 +117,15 @@ class User():
     def locationsearch(self, country):
         result = curs.execute("SELECT * FROM users WHERE country = ?", (country,)).fetchall()
         return result
+
+    def get_picture(self):
+        import hashlib
+        if self.email:
+            identifier = self.email
+        else:
+            identifier = self.username
+        hashed = hashlib.md5(identifier.encode("utf-8")).hexdigest()
+        return "http://www.gravatar.com/avatar/" + hashed + "?d=retro"
 
     def __repr__(self):
         return "<User: {}>".format(self.username)
@@ -158,6 +167,9 @@ class Photo():
 
     def getlocation(self):
         return self.location
+
+    def get_uploader(self):
+        return User.find(self.uploader)
     
     @staticmethod
     def getpicsbyusername(uploader):
@@ -174,9 +186,9 @@ class Photo():
     @staticmethod
     def getallpics(limit = None):
         if limit == None:
-            curs.execute("SELECT * FROM photos")
+            curs.execute("SELECT * FROM photos ORDER BY uploaddate DESC")
         else:    
-            curs.execute("SELECT * FROM photos LIMIT " + str(int(limit)))
+            curs.execute("SELECT * FROM photos  ORDER BY uploaddate DESC LIMIT " + str(int(limit)))
 
         piclist = []
         for i in curs.fetchall():

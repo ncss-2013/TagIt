@@ -6,7 +6,12 @@
         {% if len(friends) %}
             <ul>
             {% for friend in friends %}
-                <li><a href="/profile/{{ friend.username }}">{{ friend.username }}</a></li>
+                <li>
+                <a href="/profile/{{ friend.username }}">
+                <img src="{{ friend.get_picture() }}&s=50"></img>
+                <span style="vertical-align: 20px;">{{ friend.firstname }} {{ friend.lastname }} ({{ friend.username }})</span>
+                </a>
+                </li>
             {% end for %}
             </ul>
         {% else %}

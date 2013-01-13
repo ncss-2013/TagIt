@@ -1,4 +1,4 @@
 <form action='/logout' method ='POST'  class="pull-right wrapper login">
-    <a href="/profile">{{ username }}</a>
+    <span style="padding-right:10px; color: white;">Welcome back, {{ current_user.firstname }}</span>
     <input type="submit" class="btn" value="Logout"></input>
 </form>

@@ -10,7 +10,7 @@
                     <img src="/static/uploads/images/{{ photo.id }}.jpg" width="200">
                 </a>
                 <figcaption>
-                    <a href="/profile/{{ photo.uploader }}"><span class="user">{{ photo.uploader }}</span></a>
+                    <a href="/profile/{{ photo.uploader }}"><span class="user">{{ photo.get_uploader().firstname }} {{ photo.get_uploader().lastname }}</span></a>
                     <p>
                     {{ photo.uploaddate }} <br/> <br/> 
                     </p>

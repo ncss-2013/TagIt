@@ -6,8 +6,9 @@
             <div class="pics">
                 <img class="profile_pic" src="{{ user_image }}" width="200"> 
             </div>
-             <div class="border padding user ">
-                <h2 class="name">{{ user.username }}</h2>
+             <div class="border padding user">
+                <h3 class="name">{{ user.firstname }} {{ user.lastname }}</h3>
+                <!--<h4 class="name">{{ user.username }}</h4>-->
             </div>
             {% if user.username != username %}
                 {% if is_friend %}
@@ -34,7 +35,7 @@
                         {% end if %}
                         <!--<p><label>Birthday:</label><input></p>-->
                         {% if user.sex %}
-                        <p>Gender: {{ user.sex }}</p>
+                        <p>Gender: {% if user.sex == "M" %}Male{% else %}Female{% end if %}</p>
                         {% end if %}
                         
                     

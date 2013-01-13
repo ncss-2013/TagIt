@@ -22,6 +22,8 @@ def make_context(response):
         context['is_logged_in'] = True
         try:
             context['username'] = response.get_secure_cookie('tag_it').decode("utf-8")
+            import db
+            context["current_user"] = db.User.find(context['username'])
         except:
             response.clear_cookie('tag_it')
             response.redirect('/')

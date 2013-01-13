@@ -1,15 +1,18 @@
     <div class="padding">
         <div id="register-box" style="display:none">
             <form action='/createlogin' method='POST'>
-            <input type="text" class="input-box pull-left" name="first_name" placeholder="First Name"></input>
-            <input type="text" class="input-box" name="last_name" placeholder="Last Name"></input></br>
-            <input type="text" class="full-input-box" name="email" placeholder="Email"></input></br>
             <input type="text" class="full-input-box" name="username" placeholder="Username"></input></br>
             <input type="password" class="full-input-box" name="password" placeholder="Password"></input></br>
             <input type="password" class="full-input-box" name="password_check" placeholder="Retype Password"></input></br>
+            <br />
+            <input type="text" class="input-box pull-left" name="first_name" placeholder="First Name"></input>
+            <input type="text" class="input-box" name="last_name" placeholder="Last Name"></input></br>
+            <input type="text" class="full-input-box" name="email" placeholder="Email"></input></br>
+            <!--
             <h4 style="color:white">Birthday</h4>
             <input type="date" class="full-input-box" name="birthday" placeholder="Birthday"></input></br>
-            <select class="full-input-box">
+            -->
+            <select name="country" class="full-input-box">
                 <option value="" title="Select your country">Select your country</option>
                 <option value="Afghanistan" title="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands" title="Åland Islands">Åland Islands</option>
@@ -261,8 +264,10 @@
                 <option value="Zambia" title="Zambia">Zambia</option>
                 <option value="Zimbabwe" title="Zimbabwe">Zimbabwe</option>
             </select></br>
-            <input type="radio" class="radio-button" name="sex" style="color:white"></input><span class="sex-text">Male</span>
-            <input type="radio" class="radio-button" name="sex" style="color:white"></input><span class="sex-text">Female</span>
+            <div style="padding: 5px 5px;">
+            <input type="radio" class="radio-button" name="sex" value="M" style="color:white"></input><span class="sex-text">Male</span>
+            <input type="radio" class="radio-button" name="sex" value="F" style="color:white"></input><span class="sex-text">Female</span>
+            </div>
             </div>
           <input class="register-btn full-input-box" type="submit" value="Register" onClick="if(!$('#register-box').is(':visible')){$('#register-box').slideDown(); event.preventDefault();}">
             
