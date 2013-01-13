@@ -17,6 +17,20 @@ cgitb.enable()
 firstname,lastname, email, country, sex, age = "", "", "", "", "", 0
 
 def createlogin(response):
+    index_html = """
+<!doctype html>
+    <html>
+        <head></head>
+        <body>
+            <form id="login">
+                <input type="text" name="username" placeholder="Username"></input></br>
+                <input type="password" name="password" placeholder="Password"></input></br>
+                <input type="password" name="password_check" placeholder="Retype Password"></input></br>
+                <input type="submit" name="submit" value="Submit"></br>
+            </form>
+        </body>
+    <html>
+"""
     #response.write(index_html)             #print the html for the page
     conn = sqlite3.connect("database.db")   
     cursor = conn.cursor()
@@ -120,10 +134,11 @@ def upload(response):
     <html>
         <head></head>
         <body>
-            <a href = "/home"> Home <a>
+            <a href = "/"> Home <a>
             <form id="upload" method="post" enctype="multipart/form-data">
                 <input type="file" name="upload_image"></br>
-                <input type="text" name="tags"> Tags (seperated by spaces, cases are irrelevant) </input>
+                <input type="text" name="tags"> Tags (seperated by spaces, cases are irrelevant) </input><br>
+                <input type="text" name="description" style="width:400px; height:75px;"> Description</input><BR>
                 <input type="submit" name="Submit" value="Upload Image"></br>
                 <a href = "/piclist"> piclist <a>
             </form>
@@ -171,6 +186,8 @@ def view(response, name):
             <a href = "/home"> home <a>
             <div>
                 <img src = "/static/uploads/images/"""+name+"""">
+                </br>
+                <a href = "/piclist"> piclist <a>
                 <p>
                 """"""
                 </p>
@@ -204,11 +221,11 @@ def piclist(response):
     response.write("""<!doctype html>
     <html>
         <body>
-        <a href = "/home"> Home <a>
+        <a href = "/"> Home <a>
             <div>
                 <p>""")
     for file in os.listdir("static/uploads/images"):
-        response.write("<a href = /view/" + file + ">" + file +"</a></br>")
+        response.write('<a href="/view/' + file + '"><img border=0 height=50 width=50 src="/static/uploads/images/'+file+'"</a></br>')
     response.write("""
                 </p>
             </div>
