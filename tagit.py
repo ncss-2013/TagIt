@@ -176,6 +176,10 @@ def loggedout(response): #Loggedout page, delete cookies here
     response.clear_cookie('tag_it')
     response.redirect('/home')
 
+def friends (response):
+    context = {}
+    response.write(render('template/friends.html',context))
+
 def template_sample(response):
 #    context = { 'logged_in': False}
 #    context = { 'name':'Smerity', 'friends':['Ruby','Casper','Ted','Asem'], 'logged_in': True}
@@ -193,4 +197,5 @@ server.register('/login', login)
 server.register('/loggedout', loggedout)
 server.register('/stream', photostream)
 server.register('/template_sample', template_sample)
+server.register('/friends', friends)
 server.run()
