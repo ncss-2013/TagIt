@@ -71,7 +71,7 @@ The functions within Photo are (other than __init__):
 Example uses:
 
 
-    user1 = User.create("username", "password", etc...) 
+    user1 = (self, username, password=None, profilepicurl=None, firstname=None, lastname=None, email=None, country=None, sex=None, age=None)
 
     user1.getpassword()
         # it will return 'password')
